@@ -33,8 +33,17 @@ inline static int roman_char_to_arabic(char roman_character);
 static int roman_to_arabic(char *numeral) {
     int arabic_result = 0;
 
-    for(int i = 0; i < strlen(numeral); i++)
-        arabic_result += roman_char_to_arabic(numeral[i]);
+    int previous = 0;
+    for(int i = strlen(numeral) - 1; i >= 0; i--) {
+        int current = roman_char_to_arabic(numeral[i]);
+
+        if(current >= previous)
+            arabic_result += current;
+        else
+            arabic_result -= current;
+
+        previous = current;
+    }
     
     return arabic_result;
 }
