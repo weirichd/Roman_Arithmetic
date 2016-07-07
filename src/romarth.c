@@ -5,6 +5,18 @@
 static int roman_to_arabic(char *numeral);
 static char *arabic_to_roman(char *dest, int arabic_number);
 
+typedef struct RomanMapEntry {
+    char roman_character;
+    int arabic_value;
+} RomanMapEntry;
+
+static const RomanMapEntry roman_map[] = {
+    {'I', 1},
+    {'V', 5}
+};
+
+static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
+
 char *roman_add(char *sum, char *summand1, char *summand2) {
     int a = roman_to_arabic(summand1);
     int b = roman_to_arabic(summand2);
@@ -19,13 +31,9 @@ static int roman_to_arabic(char *numeral) {
     int arabic_result = 0;
 
     for(int i = 0; i < strlen(numeral); i++) {
-        switch (numeral[i]) {
-           case 'I':
-               arabic_result += 1;
-               break;
-           case 'V':
-               arabic_result += 5;
-               break;
+        for(int j = 0; j < roman_map_size; j++) {
+            if(numeral[i] == roman_map[j].roman_character)
+                arabic_result += roman_map[j].arabic_value;
         }
     }
     
