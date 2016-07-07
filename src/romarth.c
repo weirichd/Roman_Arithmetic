@@ -32,9 +32,8 @@ inline static int roman_char_to_arabic(char roman_character);
 static int roman_to_arabic(char *numeral) {
     int arabic_result = 0;
 
-    for(int i = 0; i < strlen(numeral); i++) {
+    for(int i = 0; i < strlen(numeral); i++)
         arabic_result += roman_char_to_arabic(numeral[i]);
-    }
     
     return arabic_result;
 }
@@ -50,13 +49,25 @@ inline static int roman_char_to_arabic(char roman_character) {
     return result;
 }
 
+inline static char arabic_to_roman_char(int arabic_value);
 
 static char *arabic_to_roman(char *dest, int arabic_number) {
-    int number_of_Is = arabic_number % 5;
-    int number_of_Vs = arabic_number / 5;
+    int number_of_1s = arabic_number % 5;
+    int number_of_5s = arabic_number / 5;
 
-    memset(dest,'V', number_of_Vs);
-    memset(dest + number_of_Vs, 'I', number_of_Is);
+    memset(dest, arabic_to_roman_char(5), number_of_5s);
+    memset(dest + number_of_5s, arabic_to_roman_char(1), number_of_1s);
 
     return dest;
+}
+
+inline static char arabic_to_roman_char(int arabic_value) {
+    char result = '\0';
+
+    for(int i = 0; i < roman_map_size; i++) {
+        if(arabic_value == roman_map[i].arabic_value)
+            result = roman_map[i].roman_character;
+    }
+
+    return result;
 }
