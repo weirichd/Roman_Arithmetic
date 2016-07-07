@@ -22,6 +22,16 @@ START_TEST(I_plus_II_equals_III) {
     ck_assert_str_eq(sum, "III");
 } END_TEST
 
+START_TEST(I_plus_V_equals_VI) { 
+    char summand1[] = "I";
+    char summand2[] = "V";
+    char sum[3] = {};
+
+    roman_add(sum, summand1, summand2); 
+
+    ck_assert_str_eq(sum, "VI");
+} END_TEST
+
 
 int main() {
     Suite *s = suite_create("Arithmatic");
@@ -34,6 +44,7 @@ int main() {
 
     tcase_add_test(tc_add, I_plus_I_equals_II);
     tcase_add_test(tc_add, I_plus_II_equals_III);
+    tcase_add_test(tc_add, I_plus_V_equals_VI);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
