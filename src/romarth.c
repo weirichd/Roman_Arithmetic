@@ -27,18 +27,29 @@ char *roman_subtract(char *differene, char *minuend, char *suptrahend) {
     return NULL;
 }
 
+inline static int roman_char_to_arabic(char roman_character);
+
 static int roman_to_arabic(char *numeral) {
     int arabic_result = 0;
 
     for(int i = 0; i < strlen(numeral); i++) {
-        for(int j = 0; j < roman_map_size; j++) {
-            if(numeral[i] == roman_map[j].roman_character)
-                arabic_result += roman_map[j].arabic_value;
-        }
+        arabic_result += roman_char_to_arabic(numeral[i]);
     }
     
     return arabic_result;
 }
+
+inline static int roman_char_to_arabic(char roman_character) {
+    int result = 0;
+
+    for(int i = 0; i < roman_map_size; i++) {
+        if(roman_character == roman_map[i].roman_character)
+            result = roman_map[i].arabic_value;
+    }
+
+    return result;
+}
+
 
 static char *arabic_to_roman(char *dest, int arabic_number) {
     int number_of_Is = arabic_number % 5;
