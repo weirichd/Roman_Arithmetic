@@ -68,10 +68,16 @@ static char *arabic_to_roman(char *dest, int arabic_number) {
     int number_of_5s = remainder_for_10s / 5;
 
     memset(dest, arabic_to_roman_char(10), number_of_10s);
-    memset(dest + number_of_10s, arabic_to_roman_char(5), number_of_5s);
-    memset(dest + number_of_10s + number_of_5s, arabic_to_roman_char(1), number_of_1s);
+    if(number_of_1s == 4) {
+        *(dest + number_of_10s) = arabic_to_roman_char(1);
+        *(dest + number_of_10s + 1) = arabic_to_roman_char(5);
+        *(dest + number_of_10s + 2) = '\0';
+    } else {
+        memset(dest + number_of_10s, arabic_to_roman_char(5), number_of_5s);
+        memset(dest + number_of_10s + number_of_5s, arabic_to_roman_char(1), number_of_1s);
 
-    *(dest + number_of_1s + number_of_5s + number_of_10s) = '\0';
+        *(dest + number_of_1s + number_of_5s + number_of_10s) = '\0';
+    }
 
     return dest;
 }
