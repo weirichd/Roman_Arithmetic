@@ -6,6 +6,8 @@ LIBS=check
 LDFLAGS=-L../build -lromarth
 LDFLAGS+=`pkg-config --cflags --libs $(LIBS)`
 
+LIBRARY=../build/libromarth.a
+
 BUILD_DIR=build
 
 TARGET=$(BUILD_DIR)/test_romarth
@@ -19,7 +21,7 @@ all: $(BUILD_DIR) $(TARGET)
 $(BUILD_DIR):
 	mkdir $@
 
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJECTS) $(LIBRARY)
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 $(BUILD_DIR)/%.o: %.c 
