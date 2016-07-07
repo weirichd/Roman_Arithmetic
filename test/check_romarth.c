@@ -82,6 +82,16 @@ START_TEST(IX_plus_I_equals_X) {
     ck_assert_str_eq(sum, "X");
 } END_TEST
 
+START_TEST(II_plus_II_equals_IV) { 
+    char summand1[] = "II";
+    char summand2[] = "II";
+    char sum[3] = {};
+
+    roman_add(sum, summand1, summand2); 
+
+    ck_assert_str_eq(sum, "IV");
+} END_TEST
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
@@ -100,6 +110,7 @@ int main() {
     tcase_add_test(tc_add, XXV_plus_XII_equals_XXXVII);
     tcase_add_test(tc_add, IV_plus_I_equals_V);
     tcase_add_test(tc_add, IX_plus_I_equals_X);
+    tcase_add_test(tc_add, II_plus_II_equals_IV);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
