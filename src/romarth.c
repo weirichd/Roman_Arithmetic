@@ -12,7 +12,8 @@ typedef struct RomanMapEntry {
 
 static const RomanMapEntry roman_map[] = {
     {'I', 1},
-    {'V', 5}
+    {'V', 5},
+    {'X', 10}
 };
 
 static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
@@ -52,11 +53,16 @@ inline static int roman_char_to_arabic(char roman_character) {
 inline static char arabic_to_roman_char(int arabic_value);
 
 static char *arabic_to_roman(char *dest, int arabic_number) {
-    int number_of_1s = arabic_number % 5;
-    int number_of_5s = arabic_number / 5;
+    int number_of_10s = arabic_number / 10;
+    int remainder_for_10s = arabic_number % 10;
+    int number_of_1s = remainder_for_10s % 5;
+    int number_of_5s = remainder_for_10s / 5;
 
-    memset(dest, arabic_to_roman_char(5), number_of_5s);
-    memset(dest + number_of_5s, arabic_to_roman_char(1), number_of_1s);
+    memset(dest, arabic_to_roman_char(10), number_of_10s);
+    memset(dest + number_of_10s, arabic_to_roman_char(5), number_of_5s);
+    memset(dest + number_of_10s + number_of_5s, arabic_to_roman_char(1), number_of_1s);
+
+    *(dest + number_of_1s + number_of_5s + number_of_10s) = '\0';
 
     return dest;
 }
