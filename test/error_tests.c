@@ -17,3 +17,13 @@ START_TEST(subtraction_returns_an_empty_string_when_the_difference_is_not_large_
 
     ck_assert_str_eq(difference, "");
 } END_TEST
+
+START_TEST(subtraction_returns_an_empty_string_when_the_difference_would_have_been_negative) { 
+    char minuend[] = "I";
+    char suptrhend[] = "II";
+    char difference[2] = { };
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "");
+} END_TEST

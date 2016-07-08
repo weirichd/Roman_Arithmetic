@@ -44,6 +44,7 @@ int main() {
 
     tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_not_large_enough);
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_is_not_large_enough);
+    tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_would_have_been_negative);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
