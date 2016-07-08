@@ -104,12 +104,21 @@ inline static void additive_place_value(char *dest, int digit, int place) {
         memset(dest, one_character, number_of_ones);
 }
 
+inline int is_five_minus_one_case(int digit) {
+    return digit == 4;
+}
+
 inline static void subtractive_place_value(char *dest, int digit, int place) {
     char one_character = arabic_to_roman_char(place);
     char five_character = arabic_to_roman_char(5 * place);
+    char ten_character = arabic_to_roman_char(10 * place);
 
     dest[0] = one_character;
-    dest[1] = five_character;
+
+    if(is_five_minus_one_case(digit))
+        dest[1] = five_character;
+    else
+        dest[1] = ten_character;
 }
 
 inline static char arabic_to_roman_char(int arabic_value) {
