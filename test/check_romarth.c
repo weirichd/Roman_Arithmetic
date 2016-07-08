@@ -142,6 +142,16 @@ START_TEST(D_plus_D_equals_M) {
     ck_assert_str_eq(sum, "M");
 } END_TEST
 
+START_TEST(M_plus_I_equals_MI) { 
+    char summand1[] = "M";
+    char summand2[] = "I";
+    char sum[3] = {};
+
+    roman_add(sum, summand1, summand2); 
+
+    ck_assert_str_eq(sum, "MI");
+} END_TEST
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
@@ -167,6 +177,7 @@ int main() {
     tcase_add_test(tc_add, L_plus_L_equals_C);
     tcase_add_test(tc_add, CCLXXXIX_plus_CDVII_equals_DCXCVI);
     tcase_add_test(tc_add, D_plus_D_equals_M);
+    tcase_add_test(tc_add, M_plus_I_equals_MI);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
