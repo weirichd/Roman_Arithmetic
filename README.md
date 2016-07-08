@@ -35,7 +35,7 @@ The header file romarth.h provides two functions:
 
 ```c
 char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2);
-char *roman_subtract(char *differene, size_t difference_size, char *minuend, char *suptrahend);
+char *roman_subtract(char *difference, size_t difference_size, char *minuend, char *suptrahend);
 ```
 
 These functions return their results, so you can conviently chain them if you wish:
