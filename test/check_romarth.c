@@ -42,9 +42,10 @@ int main() {
     tcase_add_test(tc_subtract, II_minus_I_equals_I);
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
-    tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_not_large_enough);
-    tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_is_not_large_enough);
+    tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_array_is_not_large_enough);
+    tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_array_is_not_large_enough);
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_would_have_been_negative);
+    tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_larger_than_we_can_express);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
