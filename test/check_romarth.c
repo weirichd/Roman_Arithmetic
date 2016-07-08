@@ -127,7 +127,7 @@ START_TEST(L_plus_L_equals_C) {
 START_TEST(CCLXXXIX_plus_CDVII_equals_DCXCVI) { 
     char summand1[] = "CCLXXXIX";
     char summand2[] = "CDVII";
-    char sum[6] = {};
+    char sum[7] = {};
 
     roman_add(sum, ARRAY_LENGTH(sum),  summand1, summand2); 
 
@@ -159,7 +159,7 @@ START_TEST(II_minus_I_equals_I) {
     char suptrhend[] = "I";
     char difference[2] = {};
 
-    roman_subtract(difference, minuend, suptrhend); 
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
 
     ck_assert_str_eq(difference, "I");
 } END_TEST
@@ -169,7 +169,7 @@ START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) {
     char suptrhend[] = "CLIX";
     char difference[9] = {};
 
-    roman_subtract(difference, minuend, suptrhend); 
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
 
     ck_assert_str_eq(difference, "MMCCLXII");
 } END_TEST
@@ -177,13 +177,12 @@ START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) {
 START_TEST(addition_returns_an_empty_string_when_the_sum_is_not_large_enough) { 
     char summand1[] = "V";
     char summand2[] = "III";
-    char sum[2] = {};
+    char sum[2] = { };
 
     roman_add(sum, ARRAY_LENGTH(sum),  summand1, summand2); 
 
     ck_assert_str_eq(sum, "");
 } END_TEST
-
 
 int main() {
     Suite *s = suite_create("Arithmatic");

@@ -2,7 +2,7 @@
 #include <string.h> /* For strlen, strcat, memset */
 
 static int roman_to_arabic(char *numeral);
-static char *arabic_to_roman(char *dest, int arabic_number);
+static char *arabic_to_roman(char *dest, int dest_size, int arabic_number);
 
 typedef struct RomanMapEntry {
     char roman_character;
@@ -25,13 +25,13 @@ static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
 char *roman_add(char *sum, int sum_size, char *summand1, char *summand2) {
     int a = roman_to_arabic(summand1);
     int b = roman_to_arabic(summand2);
-    return arabic_to_roman(sum, a + b);
+    return arabic_to_roman(sum, sum_size, a + b);
 }
 
-char *roman_subtract(char *differene, char *minuend, char *suptrahend) {
+char *roman_subtract(char *differene, int difference_size, char *minuend, char *suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
-    return arabic_to_roman(differene, a - b);
+    return arabic_to_roman(differene, difference_size, a - b);
 }
 
 inline static int roman_char_to_arabic(char roman_character);
@@ -65,11 +65,17 @@ inline static int roman_char_to_arabic(char roman_character) {
     return result;
 }
 
-inline static void concat_place_value(char *dest, int arabic_numeral, int place);
+inline static int concat_place_value(char *dest, int dest_size, int arabic_numeral, int place);
 
-static char *arabic_to_roman(char *dest, int arabic_number) {
-    for(int place = largest_possible_place_value; place >= 1; place /= 10) 
-        concat_place_value(dest, arabic_number, place); 
+static char *arabic_to_roman(char *dest, int dest_size, int arabic_number) {
+    for(int place = largest_possible_place_value; place >= 1; place /= 10) {
+        int concat_was_successful = concat_place_value(dest, dest_size, arabic_number, place);
+
+        if(!concat_was_successful) {
+            memset(dest, 0, dest_size);
+            return dest;
+        }
+    }
 
     return dest;
 }
@@ -82,7 +88,7 @@ inline static int is_subtractive_digit(int digit) {
     return digit % 5 == 4;
 }
 
-inline static void concat_place_value(char *dest, int arabic_numeral, int place) {
+inline static int concat_place_value(char *dest, int dest_size, int arabic_numeral, int place) {
     int this_places_digit = (arabic_numeral / place) % 10;         
 
     char temp_buffer[4] = { };
@@ -92,7 +98,12 @@ inline static void concat_place_value(char *dest, int arabic_numeral, int place)
     else
         subtractive_place_value(temp_buffer, this_places_digit, place);
 
-    strcat(dest, temp_buffer);
+    if(strlen(dest) + strlen(temp_buffer) > dest_size - 1)
+        return 0; 
+
+    strncat(dest, temp_buffer, 4);
+
+    return 1;
 }
 
 inline static void additive_place_value(char *dest, int digit, int place) {
