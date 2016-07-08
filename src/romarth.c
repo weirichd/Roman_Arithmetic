@@ -13,7 +13,8 @@ typedef struct RomanMapEntry {
 static const RomanMapEntry roman_map[] = {
     {'I', 1},
     {'V', 5},
-    {'X', 10}
+    {'X', 10},
+    {'L', 50}
 };
 
 static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
