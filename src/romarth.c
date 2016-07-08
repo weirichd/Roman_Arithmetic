@@ -16,11 +16,11 @@ static const RomanMapEntry roman_map[] = {
     {'X', 10},
     {'L', 50},
     {'C', 100},
-    {'D', 500}
+    {'D', 500},
+    {'M', 1000},
 };
 
-static const int largest_possible_place_value = 100;
-
+static const int largest_possible_place_value = 1000;
 static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
 
 char *roman_add(char *sum, char *summand1, char *summand2) {
