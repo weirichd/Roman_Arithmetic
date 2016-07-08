@@ -1,6 +1,6 @@
 #include "romarth.h"
 #include <stddef.h> /* For NULL Macro */
-#include <string.h> /* For strlen, memset */
+#include <string.h> /* For strlen, strcat, memset */
 
 static int roman_to_arabic(char *numeral);
 static char *arabic_to_roman(char *dest, int arabic_number);
@@ -59,27 +59,57 @@ inline static int roman_char_to_arabic(char roman_character) {
     return result;
 }
 
-inline static char arabic_to_roman_char(int arabic_value);
+inline static void concat_place_value(char *dest, int arabic_numeral, int place);
 
 static char *arabic_to_roman(char *dest, int arabic_number) {
-    int number_of_10s = arabic_number / 10;
-    int remainder_for_10s = arabic_number % 10;
-    int number_of_1s = remainder_for_10s % 5;
-    int number_of_5s = remainder_for_10s / 5;
-
-    memset(dest, arabic_to_roman_char(10), number_of_10s);
-    if(number_of_1s == 4) {
-        *(dest + number_of_10s) = arabic_to_roman_char(1);
-        *(dest + number_of_10s + 1) = arabic_to_roman_char(5);
-        *(dest + number_of_10s + 2) = '\0';
-    } else {
-        memset(dest + number_of_10s, arabic_to_roman_char(5), number_of_5s);
-        memset(dest + number_of_10s + number_of_5s, arabic_to_roman_char(1), number_of_1s);
-
-        *(dest + number_of_1s + number_of_5s + number_of_10s) = '\0';
-    }
+    for(int place = 10; place >= 1; place /= 10) 
+        concat_place_value(dest, arabic_number, place); 
 
     return dest;
+}
+
+inline static char arabic_to_roman_char(int arabic_value);
+inline static void additive_place_value(char *dest, int digit, int place);
+inline static void subtractive_place_value(char *dest, int digit, int place);
+
+inline static int is_subtractive_digit(int digit) {
+    return digit % 5 == 4;
+}
+
+inline static void concat_place_value(char *dest, int arabic_numeral, int place) {
+    int this_places_digit = (arabic_numeral / place) % 10;         
+
+    char temp_buffer[4] = { };
+
+    if(!is_subtractive_digit(this_places_digit)) 
+        additive_place_value(temp_buffer, this_places_digit, place);
+    else
+        subtractive_place_value(temp_buffer, this_places_digit, place);
+
+    strcat(dest, temp_buffer);
+}
+
+inline static void additive_place_value(char *dest, int digit, int place) {
+        int number_of_ones = digit % 5;
+        int number_of_fives = digit / 5;
+
+        char one_character = arabic_to_roman_char(place);
+        char five_character = arabic_to_roman_char(5 * place);
+
+        if(number_of_fives) {
+            dest[0] = five_character;
+            dest++;
+        }
+
+        memset(dest, one_character, number_of_ones);
+}
+
+inline static void subtractive_place_value(char *dest, int digit, int place) {
+    char one_character = arabic_to_roman_char(place);
+    char five_character = arabic_to_roman_char(5 * place);
+
+    dest[0] = one_character;
+    dest[1] = five_character;
 }
 
 inline static char arabic_to_roman_char(int arabic_value) {
