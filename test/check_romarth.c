@@ -184,6 +184,16 @@ START_TEST(addition_returns_an_empty_string_when_the_sum_is_not_large_enough) {
     ck_assert_str_eq(sum, "");
 } END_TEST
 
+START_TEST(subtraction_returns_an_empty_string_when_the_difference_is_not_large_enough) { 
+    char minuend[] = "VIII";
+    char suptrhend[] = "I";
+    char difference[2] = { };
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "");
+} END_TEST
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
@@ -219,6 +229,7 @@ int main() {
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
     tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_not_large_enough);
+    tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_is_not_large_enough);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
