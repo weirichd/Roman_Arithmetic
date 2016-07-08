@@ -172,16 +172,29 @@ START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) {
     ck_assert_str_eq(difference, "MMCCLXII");
 } END_TEST
 
+START_TEST(addition_returns_an_empty_string_when_the_sum_is_not_large_enough) { 
+    char summand1[] = "V";
+    char summand2[] = "III";
+    char sum[2] = {};
+
+    roman_add(sum, summand1, summand2); 
+
+    ck_assert_str_eq(sum, "");
+} END_TEST
+
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
     TCase *tc_subtract = tcase_create("Subtraction");
+    TCase *tc_error_checks = tcase_create("Errors");
     SRunner *sr = srunner_create(s);
 
     int num_fails;
 
     suite_add_tcase(s, tc_add);
     suite_add_tcase(s, tc_subtract);
+    suite_add_tcase(s, tc_error_checks);
 
     tcase_add_test(tc_add, I_plus_I_equals_II);
     tcase_add_test(tc_add, I_plus_II_equals_III);
@@ -203,6 +216,8 @@ int main() {
 
     tcase_add_test(tc_subtract, II_minus_I_equals_I);
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
+
+    tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_not_large_enough);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
