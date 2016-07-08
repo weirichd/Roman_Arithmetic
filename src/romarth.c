@@ -22,7 +22,7 @@ static const RomanMapEntry roman_map[] = {
 static const int largest_possible_place_value = 1000;
 static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
 
-char *roman_add(char *sum, char *summand1, char *summand2) {
+char *roman_add(char *sum, int sum_size, char *summand1, char *summand2) {
     int a = roman_to_arabic(summand1);
     int b = roman_to_arabic(summand2);
     return arabic_to_roman(sum, a + b);
