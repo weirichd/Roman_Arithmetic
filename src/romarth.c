@@ -1,17 +1,17 @@
 #include "romarth.h"
 #include <string.h> /* For strlen, strncat, memset */
 
-static int roman_to_arabic(char *numeral);
+static int roman_to_arabic(const char *const numeral);
 static char *arabic_to_roman(char *dest, size_t dest_size, int arabic_number);
 
-inline static int roman_char_to_arabic(char roman_character);
-inline static int concat_place_value(char *dest, size_t dest_size, int arabic_numeral, int place);
-inline static char arabic_to_roman_char(int arabic_value);
-inline static void additive_place_value(char *dest, int digit, int place);
-inline static void subtractive_place_value(char *dest, int digit, int place);
-inline static int there_is_not_enough_room_to_perform_a_safe_concat(char *dest, size_t dest_size, char *src);
-inline static int is_subtractive_digit(int digit);
-inline static int is_five_minus_one_case(int digit);
+inline static int roman_char_to_arabic(const char roman_character);
+inline static int concat_place_value(char *const dest, const size_t dest_size, const int arabic_numeral, const int place);
+inline static char arabic_to_roman_char(const int arabic_value);
+inline static void additive_place_value(char *const dest, const int digit, const int place);
+inline static void subtractive_place_value(char *const dest, const int digit, const int place);
+inline static int there_is_not_enough_room_to_perform_a_safe_concat(const char *const dest, const size_t dest_size, const char *const src);
+inline static int is_subtractive_digit(const int digit);
+inline static int is_five_minus_one_case(const int digit);
 
 typedef struct RomanMapEntry {
     char roman_character;
@@ -34,7 +34,7 @@ static const int largest_possible_place_value = 1000;
 #define LARGEST_POSSIBLE_PLACE_VALUE_SIZE 4
 static const int largest_numeral_that_can_be_expressed = 3999;
 
-char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2) {
+char *roman_add(char *const sum, const size_t sum_size, const char *const summand1, const char *const summand2) {
     int a = roman_to_arabic(summand1);
     int b = roman_to_arabic(summand2);
 
@@ -44,7 +44,7 @@ char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2) {
         return memset(sum, 0, sum_size);
 }
 
-char *roman_subtract(char *difference, size_t difference_size, char *minuend, char *suptrahend) {
+char *roman_subtract(char *const difference, const size_t difference_size, const char *const minuend, const char *const suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
 
@@ -54,7 +54,7 @@ char *roman_subtract(char *difference, size_t difference_size, char *minuend, ch
         return memset(difference, 0, difference_size);
 }
 
-static int roman_to_arabic(char *numeral) {
+static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
 
     int previous = 0;
@@ -72,7 +72,7 @@ static int roman_to_arabic(char *numeral) {
     return arabic_result;
 }
 
-static char *arabic_to_roman(char *dest, size_t dest_size, int arabic_number) {
+static char *arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     for(int place = largest_possible_place_value; place >= 1; place /= 10) {
         int concat_was_successful = concat_place_value(dest, dest_size, arabic_number, place);
 
@@ -85,7 +85,7 @@ static char *arabic_to_roman(char *dest, size_t dest_size, int arabic_number) {
     return dest;
 }
 
-inline static int roman_char_to_arabic(char roman_character) {
+inline static int roman_char_to_arabic(const char roman_character) {
     int result = 0;
 
     for(int i = 0; i < roman_map_size; i++) {
@@ -96,7 +96,7 @@ inline static int roman_char_to_arabic(char roman_character) {
     return result;
 }
 
-inline static int concat_place_value(char *dest, size_t dest_size, int arabic_numeral, int place) {
+inline static int concat_place_value(char *const dest, const size_t dest_size, const int arabic_numeral, const int place) {
     int this_places_digit = (arabic_numeral / place) % 10;         
 
     char temp_buffer[LARGEST_POSSIBLE_PLACE_VALUE_SIZE] = { };
@@ -114,30 +114,32 @@ inline static int concat_place_value(char *dest, size_t dest_size, int arabic_nu
     return 1;
 }
 
-inline static int is_subtractive_digit(int digit) {
+inline static int is_subtractive_digit(const int digit) {
     return digit % 5 == 4;
 }
 
-inline static int there_is_not_enough_room_to_perform_a_safe_concat(char *dest, size_t dest_size, char *src) {
+inline static int there_is_not_enough_room_to_perform_a_safe_concat(const char *const dest, const size_t dest_size, const char *const src) {
     return strlen(dest) + strlen(src) > dest_size - 1;
 }
 
-inline static void additive_place_value(char *dest, int digit, int place) {
+inline static void additive_place_value(char *const dest, const int digit, const int place) {
     int number_of_ones = digit % 5;
     int number_of_fives = digit / 5;
 
     char one_character = arabic_to_roman_char(place);
     char five_character = arabic_to_roman_char(5 * place);
 
+    int offset = 0;
+
     if(number_of_fives) {
         dest[0] = five_character;
-        dest++;
+        offset = 1;
     }
 
-    memset(dest, one_character, number_of_ones);
+    memset(dest + offset, one_character, number_of_ones);
 }
 
-inline static void subtractive_place_value(char *dest, int digit, int place) {
+inline static void subtractive_place_value(char *const dest, const int digit, const int place) {
     char one_character  = arabic_to_roman_char( 1 * place);
     char five_character = arabic_to_roman_char( 5 * place);
     char ten_character  = arabic_to_roman_char(10 * place);
@@ -150,11 +152,7 @@ inline static void subtractive_place_value(char *dest, int digit, int place) {
         dest[1] = ten_character;
 }
 
-inline static int is_five_minus_one_case(int digit) {
-    return digit == 4;
-}
-
-inline static char arabic_to_roman_char(int arabic_value) {
+inline static char arabic_to_roman_char(const int arabic_value) {
     char result = '\0';
 
     for(int i = 0; i < roman_map_size; i++) {
@@ -163,4 +161,8 @@ inline static char arabic_to_roman_char(int arabic_value) {
     }
 
     return result;
+}
+
+inline static int is_five_minus_one_case(const int digit) {
+    return digit == 4;
 }
