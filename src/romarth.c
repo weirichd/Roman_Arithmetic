@@ -1,5 +1,4 @@
 #include "romarth.h"
-#include <stddef.h> /* For NULL Macro */
 #include <string.h> /* For strlen, strcat, memset */
 
 static int roman_to_arabic(char *numeral);
@@ -30,7 +29,9 @@ char *roman_add(char *sum, char *summand1, char *summand2) {
 }
 
 char *roman_subtract(char *differene, char *minuend, char *suptrahend) {
-    return NULL;
+    int a = roman_to_arabic(minuend);
+    int b = roman_to_arabic(suptrahend);
+    return arabic_to_roman(differene, a - b);
 }
 
 inline static int roman_char_to_arabic(char roman_character);
