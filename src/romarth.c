@@ -32,16 +32,22 @@ static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
 
 static const int largest_possible_place_value = 1000;
 #define LARGEST_POSSIBLE_PLACE_VALUE_SIZE 4
+static const int largest_numeral_that_can_be_expressed = 3999;
 
 char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2) {
     int a = roman_to_arabic(summand1);
     int b = roman_to_arabic(summand2);
-    return arabic_to_roman(sum, sum_size, a + b);
+
+    if(a + b <= largest_numeral_that_can_be_expressed) 
+        return arabic_to_roman(sum, sum_size, a + b);
+    else
+        return memset(sum, 0, sum_size);
 }
 
 char *roman_subtract(char *differene, size_t difference_size, char *minuend, char *suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
+
     if(a > b)
         return arabic_to_roman(differene, difference_size, a - b);
     else
