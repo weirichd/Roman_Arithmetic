@@ -14,8 +14,11 @@ static const RomanMapEntry roman_map[] = {
     {'I', 1},
     {'V', 5},
     {'X', 10},
-    {'L', 50}
+    {'L', 50},
+    {'C', 100}
 };
+
+static const int largest_possible_place_value = 100;
 
 static const size_t roman_map_size = sizeof(roman_map)/sizeof(roman_map[0]);
 
@@ -63,7 +66,7 @@ inline static int roman_char_to_arabic(char roman_character) {
 inline static void concat_place_value(char *dest, int arabic_numeral, int place);
 
 static char *arabic_to_roman(char *dest, int arabic_number) {
-    for(int place = 10; place >= 1; place /= 10) 
+    for(int place = largest_possible_place_value; place >= 1; place /= 10) 
         concat_place_value(dest, arabic_number, place); 
 
     return dest;
