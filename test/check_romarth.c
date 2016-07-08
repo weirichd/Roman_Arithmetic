@@ -162,6 +162,16 @@ START_TEST(II_minus_I_equals_I) {
     ck_assert_str_eq(difference, "I");
 } END_TEST
 
+START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) { 
+    char minuend[] = "MMCDXXI";
+    char suptrhend[] = "CLIX";
+    char difference[9] = {};
+
+    roman_subtract(difference, minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "MMCCLXII");
+} END_TEST
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
@@ -192,6 +202,7 @@ int main() {
     tcase_add_test(tc_add, M_plus_I_equals_MI);
 
     tcase_add_test(tc_subtract, II_minus_I_equals_I);
+    tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
