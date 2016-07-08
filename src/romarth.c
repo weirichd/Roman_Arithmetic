@@ -44,14 +44,14 @@ char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2) {
         return memset(sum, 0, sum_size);
 }
 
-char *roman_subtract(char *differene, size_t difference_size, char *minuend, char *suptrahend) {
+char *roman_subtract(char *difference, size_t difference_size, char *minuend, char *suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
 
     if(a > b)
-        return arabic_to_roman(differene, difference_size, a - b);
+        return arabic_to_roman(difference, difference_size, a - b);
     else
-        return memset(differene, 0, difference_size);
+        return memset(difference, 0, difference_size);
 }
 
 static int roman_to_arabic(char *numeral) {
