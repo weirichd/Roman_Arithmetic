@@ -42,7 +42,10 @@ char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2) {
 char *roman_subtract(char *differene, size_t difference_size, char *minuend, char *suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
-    return arabic_to_roman(differene, difference_size, a - b);
+    if(a > b)
+        return arabic_to_roman(differene, difference_size, a - b);
+    else
+        return memset(differene, 0, difference_size);
 }
 
 static int roman_to_arabic(char *numeral) {
