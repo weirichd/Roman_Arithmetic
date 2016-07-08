@@ -152,14 +152,26 @@ START_TEST(M_plus_I_equals_MI) {
     ck_assert_str_eq(sum, "MI");
 } END_TEST
 
+START_TEST(II_minus_I_equals_I) { 
+    char minuend[] = "II";
+    char suptrhend[] = "I";
+    char difference[2] = {};
+
+    roman_subtract(difference, minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "I");
+} END_TEST
+
 int main() {
     Suite *s = suite_create("Arithmatic");
     TCase *tc_add = tcase_create("Addition");
+    TCase *tc_subtract = tcase_create("Subtraction");
     SRunner *sr = srunner_create(s);
 
     int num_fails;
 
     suite_add_tcase(s, tc_add);
+    suite_add_tcase(s, tc_subtract);
 
     tcase_add_test(tc_add, I_plus_I_equals_II);
     tcase_add_test(tc_add, I_plus_II_equals_III);
@@ -178,6 +190,8 @@ int main() {
     tcase_add_test(tc_add, CCLXXXIX_plus_CDVII_equals_DCXCVI);
     tcase_add_test(tc_add, D_plus_D_equals_M);
     tcase_add_test(tc_add, M_plus_I_equals_MI);
+
+    tcase_add_test(tc_subtract, II_minus_I_equals_I);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
