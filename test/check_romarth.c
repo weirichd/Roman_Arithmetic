@@ -132,6 +132,15 @@ START_TEST(CCLXXXIX_plus_CDVII_equals_DCXCVI) {
     ck_assert_str_eq(sum, "DCXCVI");
 } END_TEST
 
+START_TEST(D_plus_D_equals_M) { 
+    char summand1[] = "D";
+    char summand2[] = "D";
+    char sum[2] = {};
+
+    roman_add(sum, summand1, summand2); 
+
+    ck_assert_str_eq(sum, "M");
+} END_TEST
 
 int main() {
     Suite *s = suite_create("Arithmatic");
@@ -152,11 +161,12 @@ int main() {
     tcase_add_test(tc_add, IV_plus_I_equals_V);
     tcase_add_test(tc_add, IX_plus_I_equals_X);
     tcase_add_test(tc_add, II_plus_II_equals_IV);
-
     tcase_add_test(tc_add, I_plus_VIII_equals_IX);
+
     tcase_add_test(tc_add, XXV_plus_XXV_equals_L);
     tcase_add_test(tc_add, L_plus_L_equals_C);
     tcase_add_test(tc_add, CCLXXXIX_plus_CDVII_equals_DCXCVI);
+    tcase_add_test(tc_add, D_plus_D_equals_M);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
