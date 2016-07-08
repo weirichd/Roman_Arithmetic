@@ -125,7 +125,7 @@ START_TEST(L_plus_L_equals_C) {
 START_TEST(CCLXXXIX_plus_CDVII_equals_DCXCVI) { 
     char summand1[] = "CCLXXXIX";
     char summand2[] = "CDVII";
-    char sum[2] = {};
+    char sum[6] = {};
 
     roman_add(sum, summand1, summand2); 
 

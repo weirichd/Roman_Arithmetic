@@ -15,7 +15,8 @@ static const RomanMapEntry roman_map[] = {
     {'V', 5},
     {'X', 10},
     {'L', 50},
-    {'C', 100}
+    {'C', 100},
+    {'D', 500}
 };
 
 static const int largest_possible_place_value = 100;
