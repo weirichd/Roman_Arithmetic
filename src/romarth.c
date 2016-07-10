@@ -14,21 +14,27 @@ inline static int is_subtractive_digit(const int digit);
 inline static int is_five_minus_one_case(const int digit); */
 
 typedef struct RomanMapEntry {
-    char roman_symbol[2];
+    char roman_symbol[3];
     int arabic_value;
 } RomanMapEntry;
 
 static const RomanMapEntry roman_map[] = {
-    { .roman_symbol = "M", .arabic_value = 1000},
-    { .roman_symbol = "D", .arabic_value = 500},
-    { .roman_symbol = "C", .arabic_value = 100},
-    { .roman_symbol = "L", .arabic_value = 50},
-    { .roman_symbol = "X", .arabic_value = 10},
-    { .roman_symbol = "V", .arabic_value = 5},
-    { .roman_symbol = "I", .arabic_value = 1},
+    { .roman_symbol = "M",  .arabic_value = 1000},
+    { .roman_symbol = "CM", .arabic_value = 900},
+    { .roman_symbol = "D",  .arabic_value = 500},
+    { .roman_symbol = "CD", .arabic_value = 400},
+    { .roman_symbol = "C",  .arabic_value = 100},
+    { .roman_symbol = "XC", .arabic_value = 90},
+    { .roman_symbol = "L",  .arabic_value = 50},
+    { .roman_symbol = "XL", .arabic_value = 40},
+    { .roman_symbol = "X",  .arabic_value = 10},
+    { .roman_symbol = "IX", .arabic_value = 9},
+    { .roman_symbol = "V",  .arabic_value = 5},
+    { .roman_symbol = "IV", .arabic_value = 4},
+    { .roman_symbol = "I",  .arabic_value = 1},
 };
 
-static const size_t ROMAN_MAP_SIZE = sizeof(roman_map)/sizeof(roman_map[0]);
+static const size_t ROMAN_MAP_SIZE = sizeof(roman_map)/sizeof(RomanMapEntry);
 
 /*
 static const int largest_possible_place_value = 1000;
@@ -82,16 +88,23 @@ static char *arabic_to_roman(char *const dest, const size_t dest_size, const int
 
     for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
         while(remaining >= roman_map[i].arabic_value) {
-            strncat(dest_index, roman_map[i].roman_symbol, strlen(roman_map[i].roman_symbol));
+            int symbol_len = strlen(roman_map[i].roman_symbol);
+
+            if(dest_index - dest > dest_size - 1) {
+                memset(dest, 0, dest_size);
+                return dest;
+            }
+
+            strncat(dest_index, roman_map[i].roman_symbol, symbol_len);
 
             remaining -= roman_map[i].arabic_value;
 
-            dest_index++;
+            dest_index += symbol_len;
         }
     }   
 
 /*
-    for(int place = largest_possible_place_value; place >= 1; place /= 10) {
+    for(int place = largest_possible_place_value; place >= 1; place /= 10) { 
         int concat_was_successful = concat_place_value(dest, dest_size, arabic_number, place);
 
         if(!concat_was_successful) {
@@ -105,7 +118,7 @@ static char *arabic_to_roman(char *const dest, const size_t dest_size, const int
 
 inline static int roman_char_to_arabic(const char roman_symbol) {
     for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        if(roman_symbol == roman_map[i].roman_symbol[0])
+        if(roman_symbol == roman_map[i].roman_symbol[0] && strlen(roman_map[i].roman_symbol) == 1)
             return roman_map[i].arabic_value;
     }
 
