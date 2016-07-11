@@ -4,8 +4,6 @@
 static int roman_to_arabic(const char *const numeral);
 static char *arabic_to_roman(char *dest, size_t dest_size, int arabic_number);
 
-inline static int roman_char_to_arabic(const char roman_symbol);
-
 typedef struct RomanMapEntry {
     char roman_symbol[3];
     int arabic_value;
@@ -51,19 +49,30 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
         return memset(difference, 0, difference_size);
 }
 
+inline static int string_starts_with_substring(const char *string, const char *substring) {
+    int compare_value = strncmp(string, substring, strlen(substring));
+
+    if(compare_value == 0)
+        return 1;
+    else
+        return 0;
+}
+
+static const RomanMapEntry *roman_symbol_to_map_element(const char *roman_symbol) {
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        if(string_starts_with_substring(roman_symbol, ROMAN_MAP[i].roman_symbol))
+            return &ROMAN_MAP[i];
+    }
+
+    return NULL; 
+}
+
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
 
-    int previous = 0;
-    for(int i = strlen(numeral) - 1; i >= 0; i--) {
-        int current = roman_char_to_arabic(numeral[i]);
-
-        if(current >= previous)
-            arabic_result += current;
-        else
-            arabic_result -= current;
-
-        previous = current;
+    for(int i = 0; i <  strlen(numeral); i++) {
+        arabic_result += roman_symbol_to_map_element(numeral + i)->arabic_value;
+        i += strlen(roman_symbol_to_map_element(numeral + i)->roman_symbol) - 1;
     }
 
     return arabic_result;
@@ -92,13 +101,4 @@ static char *arabic_to_roman(char *const dest, const size_t dest_size, const int
     }   
 
     return dest;
-}
-
-inline static int roman_char_to_arabic(const char roman_symbol) {
-    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        if(roman_symbol == ROMAN_MAP[i].roman_symbol[0] && strlen(ROMAN_MAP[i].roman_symbol) == 1)
-            return ROMAN_MAP[i].arabic_value;
-    }
-
-    return 0;
 }
