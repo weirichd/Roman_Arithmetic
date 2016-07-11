@@ -1,5 +1,5 @@
 #include "romarth.h"
-#include <string.h> /* For strlen, strncat, memset */
+#include <string.h> /* For strlen, strncat, strncmp, memset */
 
 static int roman_to_arabic(const char *const numeral);
 static char *arabic_to_roman(char *dest, size_t dest_size, int arabic_number);
@@ -25,6 +25,8 @@ static const RomanMapEntry ROMAN_MAP[] = {
     { .roman_symbol = "I",  .arabic_value = 1},
 };
 
+static const RomanMapEntry *find_map_element(const char *roman_symbol);
+
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
 static const int LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED = 3999; // TODO: Can we get this value by testing... instead of just coming up with it here?
@@ -49,30 +51,16 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
         return memset(difference, 0, difference_size);
 }
 
-inline static int string_starts_with_substring(const char *string, const char *substring) {
-    int compare_value = strncmp(string, substring, strlen(substring));
-
-    if(compare_value == 0)
-        return 1;
-    else
-        return 0;
-}
-
-static const RomanMapEntry *roman_symbol_to_map_element(const char *roman_symbol) {
-    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        if(string_starts_with_substring(roman_symbol, ROMAN_MAP[i].roman_symbol))
-            return &ROMAN_MAP[i];
-    }
-
-    return NULL; 
-}
-
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
 
-    for(int i = 0; i <  strlen(numeral); i++) {
-        arabic_result += roman_symbol_to_map_element(numeral + i)->arabic_value;
-        i += strlen(roman_symbol_to_map_element(numeral + i)->roman_symbol) - 1;
+    const char *current_numeral_pointer = numeral;
+
+    while(*current_numeral_pointer) {
+        const RomanMapEntry *current_entry = find_map_element(current_numeral_pointer);
+
+        arabic_result += current_entry->arabic_value;
+        current_numeral_pointer += strlen(current_entry->roman_symbol);
     }
 
     return arabic_result;
@@ -85,13 +73,12 @@ static char *arabic_to_roman(char *const dest, const size_t dest_size, const int
 
     for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
         while(remaining >= ROMAN_MAP[i].arabic_value) {
-            int symbol_len = strlen(ROMAN_MAP[i].roman_symbol);
-
             if(dest_index - dest > dest_size - 1) {
                 memset(dest, 0, dest_size);
                 return dest;
             }
 
+            int symbol_len = strlen(ROMAN_MAP[i].roman_symbol);
             strncat(dest_index, ROMAN_MAP[i].roman_symbol, symbol_len);
 
             remaining -= ROMAN_MAP[i].arabic_value;
@@ -101,4 +88,15 @@ static char *arabic_to_roman(char *const dest, const size_t dest_size, const int
     }   
 
     return dest;
+}
+
+static const RomanMapEntry *find_map_element(const char *roman_symbol) {
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        int symbol_len = strlen(ROMAN_MAP[i].roman_symbol);
+
+        if(strncmp(roman_symbol, ROMAN_MAP[i].roman_symbol, symbol_len) == 0)
+            return &ROMAN_MAP[i];
+    }
+
+    return NULL; 
 }
