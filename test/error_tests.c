@@ -48,3 +48,14 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_sum_and_one_of_the_summan
 
     ck_assert_str_eq(summand2, "IV");
 } END_TEST
+
+START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuend) { 
+    char minuend[5] = { };
+    char suptrhend[] = "II";
+ 
+    minuend[0] = 'X';
+
+    roman_subtract(minuend, ARRAY_LENGTH(minuend), minuend, suptrhend); 
+
+    ck_assert_str_eq(minuend, "VIII");
+} END_TEST

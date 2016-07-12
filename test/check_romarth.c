@@ -48,6 +48,8 @@ int main() {
     tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_larger_than_we_can_express);
     tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_sum_and_one_of_the_summands_without_errors);
 
+    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuend);
+
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
     srunner_free(sr);
