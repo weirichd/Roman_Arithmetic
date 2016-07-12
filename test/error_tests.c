@@ -37,3 +37,14 @@ START_TEST(addition_returns_an_empty_string_when_the_sum_is_larger_than_we_can_e
 
     ck_assert_str_eq(sum, "");
 } END_TEST
+
+START_TEST(the_caller_can_use_the_same_pointer_for_the_sum_and_one_of_the_summands_without_errors) { 
+    char summand1[] = "III";
+    char summand2[3] = { };
+ 
+    summand2[0] = 'I';
+
+    roman_add(summand2, ARRAY_LENGTH(summand2),  summand1, summand2); 
+
+    ck_assert_str_eq(summand2, "IV");
+} END_TEST
