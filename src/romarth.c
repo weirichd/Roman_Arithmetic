@@ -32,6 +32,7 @@ static const RomanMapEntry ROMAN_MAP[] = {
 */
 
 static const RomanMapEntry ROMAN_MAP[] = {
+    { .roman_symbol = 'M',  .arabic_value = 1000},
     { .roman_symbol = 'D',  .arabic_value = 500},
     { .roman_symbol = 'C',  .arabic_value = 100},
     { .roman_symbol = 'L',  .arabic_value = 50},
