@@ -14,9 +14,13 @@ TARGET=$(BUILD_DIR)/test_romarth
 
 SOURCES=check_romarth.c
 
+TESTS=addition_tests.c error_tests.c subtraction_tests.c
+
 OBJECTS=$(addprefix $(BUILD_DIR)/, $(SOURCES:.c=.o))
 
 all: $(BUILD_DIR) $(TARGET)
+
+$(SOURCES): $(TESTS)
 
 $(BUILD_DIR):
 	mkdir $@

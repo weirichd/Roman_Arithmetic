@@ -46,9 +46,11 @@ int main() {
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_array_is_not_large_enough);
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_would_have_been_negative);
     tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_is_larger_than_we_can_express);
-    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_sum_and_one_of_the_summands_without_errors);
+    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_sum_and_the_first_summand_without_errors);
 
-    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuend);
+    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_sum_and_the_second_summand_without_errors);
+    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuend_without_errors);
+    tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptrahend_without_errors);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
