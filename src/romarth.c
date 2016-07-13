@@ -47,10 +47,12 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
 
+    memset(difference, 0, difference_size);
+
     if(a > b)
         return arabic_to_roman(difference, difference_size, a - b);
     else
-        return memset(difference, 0, difference_size);
+        return difference;
 }
 
 static int roman_to_arabic(const char *const numeral) {
