@@ -20,7 +20,7 @@ OBJECTS=$(addprefix $(BUILD_DIR)/, $(SOURCES:.c=.o))
 
 all: $(BUILD_DIR) $(TARGET)
 
-$(SOURCES): $(TESTS)
+$(OBJECTS): $(SOURCES) $(TESTS)
 
 $(BUILD_DIR):
 	mkdir $@
