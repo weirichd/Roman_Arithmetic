@@ -29,8 +29,6 @@ static const RomanMapEntry *find_map_element(const char *roman_symbol);
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
-/*
-
 static const int LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED = 3999;
 
 char *roman_add(char *const sum, const size_t sum_size, const char *const summand1, const char *const summand2) {
@@ -44,8 +42,6 @@ char *roman_add(char *const sum, const size_t sum_size, const char *const summan
 
     return sum;
 }
-
-*/
 
 char *roman_subtract(char *const difference, const size_t difference_size, const char *const minuend, const char *const suptrahend) {
     int a = roman_to_arabic(minuend);
