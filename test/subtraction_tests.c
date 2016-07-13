@@ -41,7 +41,7 @@ START_TEST(X_minus_II_equals_VIII) {
 START_TEST(L_minus_XX_equals_XXX) { 
     char minuend[] = "L";
     char suptrhend[] = "XX";
-    char difference[5] = {};
+    char difference[4] = {};
 
     roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
 
@@ -61,7 +61,7 @@ START_TEST(C_minus_L_equals_L) {
 START_TEST(D_minus_CC_equals_CCC) { 
     char minuend[] = "D";
     char suptrhend[] = "CC";
-    char difference[5] = {};
+    char difference[4] = {};
 
     roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
 
@@ -76,6 +76,16 @@ START_TEST(M_minus_D_equals_D) {
     roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
 
     ck_assert_str_eq(difference, "D");
+} END_TEST
+
+START_TEST(V_minus_I_equals_IV) { 
+    char minuend[] = "V";
+    char suptrhend[] = "I";
+    char difference[3] = {};
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "IV");
 } END_TEST
 
 /*

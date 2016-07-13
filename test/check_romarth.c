@@ -48,6 +48,7 @@ int main() {
     tcase_add_test(tc_subtract, C_minus_L_equals_L);
     tcase_add_test(tc_subtract, D_minus_CC_equals_CCC);
     tcase_add_test(tc_subtract, M_minus_D_equals_D);
+    tcase_add_test(tc_subtract, V_minus_I_equals_IV);
 /* 
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
