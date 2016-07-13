@@ -88,6 +88,16 @@ START_TEST(V_minus_I_equals_IV) {
     ck_assert_str_eq(difference, "IV");
 } END_TEST
 
+START_TEST(X_minus_I_equals_IX) { 
+    char minuend[] = "X";
+    char suptrhend[] = "I";
+    char difference[3] = {};
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "IX");
+} END_TEST
+
 /*
 
 START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) { 
