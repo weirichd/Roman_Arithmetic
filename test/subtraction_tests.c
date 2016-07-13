@@ -128,6 +128,16 @@ START_TEST(D_minus_C_equals_CD) {
     ck_assert_str_eq(difference, "CD");
 } END_TEST
 
+START_TEST(M_minus_C_equals_CM) { 
+    char minuend[] = "M";
+    char suptrhend[] = "C";
+    char difference[3] = {};
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrhend); 
+
+    ck_assert_str_eq(difference, "CM");
+} END_TEST
+
 /*
 
 START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) { 

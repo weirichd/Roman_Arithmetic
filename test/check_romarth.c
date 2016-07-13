@@ -54,6 +54,7 @@ int main() {
     tcase_add_test(tc_subtract, L_minus_X_equals_XL);
     tcase_add_test(tc_subtract, C_minus_X_equals_XC);
     tcase_add_test(tc_subtract, D_minus_C_equals_CD);
+    tcase_add_test(tc_subtract, M_minus_C_equals_CM);
 /* 
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
