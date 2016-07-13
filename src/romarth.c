@@ -62,11 +62,11 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
 }
 
 static int roman_to_arabic(const char *const numeral) {
-    return 0;
+    return strlen(numeral);
 }
 
 static void arabic_to_roman(char *dest, size_t dest_size, int arabic_number) { 
-    return;
+    memset(dest, 'I', arabic_number);
 }
 
 /*
