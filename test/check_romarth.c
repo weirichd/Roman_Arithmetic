@@ -40,6 +40,7 @@ int main() {
     tcase_add_test(tc_add, M_plus_I_equals_MI);
 */
     tcase_add_test(tc_subtract, II_minus_I_equals_I);
+    tcase_add_test(tc_subtract, V_minus_II_equals_III);
 /* 
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
