@@ -8,6 +8,8 @@ START_TEST(II_minus_I_equals_I) {
     ck_assert_str_eq(difference, "I");
 } END_TEST
 
+/*
+
 START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) { 
     char minuend[] = "MMCDXXI";
     char suptrhend[] = "CLIX";
@@ -17,3 +19,4 @@ START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) {
 
     ck_assert_str_eq(difference, "MMCCLXII");
 } END_TEST
+*/

@@ -4,6 +4,10 @@
 static int roman_to_arabic(const char *const numeral);
 static void arabic_to_roman(char *dest, size_t dest_size, int arabic_number);
 
+/*****************
+  Commented out for the purpose of test driving subtraction
+ *****************
+
 typedef struct RomanMapEntry {
     char roman_symbol[3];
     int arabic_value;
@@ -43,6 +47,8 @@ char *roman_add(char *const sum, const size_t sum_size, const char *const summan
     return sum;
 }
 
+*/
+
 char *roman_subtract(char *const difference, const size_t difference_size, const char *const minuend, const char *const suptrahend) {
     int a = roman_to_arabic(minuend);
     int b = roman_to_arabic(suptrahend);
@@ -54,6 +60,16 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
 
     return difference;
 }
+
+static int roman_to_arabic(const char *const numeral) {
+    return 0;
+}
+
+static void arabic_to_roman(char *dest, size_t dest_size, int arabic_number) { 
+    return;
+}
+
+/*
 
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
@@ -102,3 +118,5 @@ static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 
     return NULL; 
 }
+
+*/
