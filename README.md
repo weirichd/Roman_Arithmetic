@@ -46,6 +46,37 @@ char sum2[50];
 roman_add(sum2, 50, roman_add(sum1, 50, "V", "II"), "XXIII"); // sum2 holds the result of 5 + 3 + 23
 ```
 
+You are free to use an input as an output as well:
+
+```c
+char iterator[50];
+
+iterator[0] = 'I';
+
+printf("Counting in Roman Numerals:\n");
+
+for(int i = 1; i < 10; i++) {
+    printf("%s\n", iterator);
+    roman_add(iterator, iterator, "I");
+}
+```
+
+The Roman arithmetic functions will return empty strings under any of the following conditions:
+
+* The `sum_size` or `difference_size` is smaller than what is actually necessary to write the numeral result
+* The difference would have been non-positive (when `suptrahend >= minuend`)
+* The sum is too large to be written (when `sum > 3999`)
+
+The library will assume that the inputs are valid Roman numerals.  Dealing with this seemed outside the scope of the kata.
+
+```c
+char unpredictable[50];
+
+roman_add(unpredictable, "Dinosaurs", "VVMIIXX");
+
+printf("Who know what this will print? - %s\n", unpredictable);
+```
+
 ## Requirements
 
 You will need pkg-config installed in order to link without issues.  Run `sudo apt-get install pkg-config` from the command line if you do not have it.
@@ -63,7 +94,6 @@ Run `make run_tests` from the root directory.
 Run `make clean` from the root directory.
 
 # Write up
-
 
 For this kata, I kept the following goals in mind:
 
