@@ -62,6 +62,10 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
 }
 
 static int roman_to_arabic(const char *const numeral) {
+
+    if(*numeral == 'V')
+        return strlen(numeral) + 4;
+
     return strlen(numeral);
 }
 
