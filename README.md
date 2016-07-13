@@ -62,3 +62,14 @@ Run `make run_tests` from the root directory.
 
 Run `make clean` from the root directory.
 
+# Write up
+
+
+For this kata, I kept the following goals in mind:
+
+* Test drive the code. Let the tests dictate how the code evolves. Do not predesign.
+* Make the code as *simple* as possible, so that it is obvious what is going on at every step.
+
+With this in mind, I tried to refactor whenever the algorithm started to look a little convoluted.
+
+The development ended up following three phases: Initial development to satisfy the requirements, major refactor to make the numeral conversion algorithm simpler to follow, and a redevelopemt of subtraction.  Around commit #60, I commented out a majority of my tests and code in order to redo subtraction.  The reason for this was because, since subtraction and addition internally relied on the same conversion functions, once the II - I = I test was green **ALL** subtraction would work properly (except for error cases of course).  This I felt was a little scary, since if at any time the library was swapped out for something else which was less tightly coupled between the addition and subtraction, I still wanted the test suit to be robust.  Thsi motivated the decision to test drive subtraction from the ground up, rather than just add a bunch of already passing tests after the fact.
