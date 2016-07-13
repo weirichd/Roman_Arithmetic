@@ -138,8 +138,6 @@ START_TEST(M_minus_C_equals_CM) {
     ck_assert_str_eq(difference, "CM");
 } END_TEST
 
-/*
-
 START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) { 
     char minuend[] = "MMCDXXI";
     char suptrhend[] = "CLIX";
@@ -149,4 +147,3 @@ START_TEST(MMCDXXI_minus_CLIX_equals_MMCCLXII) {
 
     ck_assert_str_eq(difference, "MMCCLXII");
 } END_TEST
-*/

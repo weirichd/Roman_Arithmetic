@@ -55,9 +55,9 @@ int main() {
     tcase_add_test(tc_subtract, C_minus_X_equals_XC);
     tcase_add_test(tc_subtract, D_minus_C_equals_CD);
     tcase_add_test(tc_subtract, M_minus_C_equals_CM);
-/* 
     tcase_add_test(tc_subtract, MMCDXXI_minus_CLIX_equals_MMCCLXII);
 
+/*
     tcase_add_test(tc_error_checks, addition_returns_an_empty_string_when_the_sum_array_is_not_large_enough);
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_array_is_not_large_enough);
     tcase_add_test(tc_error_checks, subtraction_returns_an_empty_string_when_the_difference_would_have_been_negative);
