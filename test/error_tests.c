@@ -50,7 +50,7 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_sum_and_the_first_summand
 } END_TEST
 
 START_TEST(the_caller_can_use_the_same_pointer_for_the_sum_and_the_second_summand_without_errors) { 
-    char summand1[3];
+    char summand1[3] = { };
     char summand2[] = "III";
  
     summand1[0] = 'I';
@@ -73,7 +73,7 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuen
 
 START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptrahend_without_errors) { 
     char minuend[] = "C";
-    char suptrahend[4] = "I";
+    char suptrahend[4] = { };
  
     suptrahend[0] = 'I';
 
