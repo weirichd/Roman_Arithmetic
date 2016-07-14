@@ -61,6 +61,25 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
     return difference;
 }
 
+// NOTE: Is this new version simpler than the origional below?
+static int roman_to_arabic(const char *const numeral) {
+    int arabic_result = 0;
+
+    int i = 0;
+
+    while(numeral[i] != '\0') {
+        const RomanMapEntry *current_entry = find_map_element(numeral + i);
+
+        arabic_result += current_entry->arabic_value;
+
+        i += strlen(current_entry->roman_symbol);
+    }
+
+    return arabic_result;
+}
+
+/* Original version below
+
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
 
@@ -75,6 +94,8 @@ static int roman_to_arabic(const char *const numeral) {
 
     return arabic_result;
 }
+
+*/
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     int remaining = arabic_number;
