@@ -70,6 +70,7 @@ int main() {
     tcase_add_test(tc_error_checks, passing_a_null_pointer_for_difference_returns_null_without_an_error);
 
     tcase_add_test(tc_error_checks, passing_a_null_pointer_for_summand1_returns_null_without_an_error);
+    tcase_add_test(tc_error_checks, passing_a_null_pointer_for_summand2_returns_null_without_an_error);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
