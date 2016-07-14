@@ -122,3 +122,11 @@ START_TEST(passing_a_null_pointer_for_minuend_returns_null_without_an_error) {
     ck_assert(roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend) == NULL);
 } END_TEST
 
+START_TEST(passing_a_null_pointer_for_suptrahend_returns_null_without_an_error) { 
+    char minuend[] = "II";
+    char *suptrahend = NULL;
+    char difference[2];
+
+    ck_assert(roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend) == NULL);
+} END_TEST
+
