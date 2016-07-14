@@ -85,8 +85,9 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptra
 START_TEST(passing_a_null_pointer_for_sum_returns_null_without_an_error) { 
     char summand1[] = "I";
     char summand2[] = "I";
+    char *sum = NULL;
 
-    ck_assert(roman_add(NULL, 0, summand1, summand2) == NULL);
+    ck_assert(roman_add(sum, ARRAY_LENGTH(sum), summand1, summand2) == NULL);
 } END_TEST
 
 START_TEST(passing_a_null_pointer_for_summand1_returns_null_without_an_error) { 
@@ -105,10 +106,19 @@ START_TEST(passing_a_null_pointer_for_summand2_returns_null_without_an_error) {
     ck_assert(roman_add(sum, ARRAY_LENGTH(sum), summand1, summand2) == NULL);
 } END_TEST
 
-
 START_TEST(passing_a_null_pointer_for_difference_returns_null_without_an_error) { 
     char minuend[] = "II";
     char suptrahend[] = "I";
+    char *difference = NULL;
 
-    ck_assert(roman_subtract(NULL, 0, minuend, suptrahend) == NULL);
+    ck_assert(roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend) == NULL);
 } END_TEST
+
+START_TEST(passing_a_null_pointer_for_minuend_returns_null_without_an_error) { 
+    char *minuend = NULL;
+    char suptrahend[] = "I";
+    char difference[2];
+
+    ck_assert(roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend) == NULL);
+} END_TEST
+
