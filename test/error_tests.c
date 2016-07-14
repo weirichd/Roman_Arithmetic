@@ -81,3 +81,10 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptra
 
     ck_assert_str_eq(suptrahend, "XCIX");
 } END_TEST
+
+START_TEST(passing_a_null_pointer_for_sum_returns_null_without_an_error) { 
+    char summand1[] = "I";
+    char summand2[] = "I";
+
+    ck_assert(roman_add(NULL, 0, summand1, summand2) == NULL);
+} END_TEST

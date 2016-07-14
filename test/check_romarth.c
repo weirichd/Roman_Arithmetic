@@ -66,6 +66,7 @@ int main() {
     tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_sum_and_the_second_summand_without_errors);
     tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuend_without_errors);
     tcase_add_test(tc_error_checks, the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptrahend_without_errors);
+    tcase_add_test(tc_error_checks, passing_a_null_pointer_for_sum_returns_null_without_an_error);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
