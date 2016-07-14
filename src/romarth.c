@@ -50,6 +50,9 @@ char *roman_add(char *const sum, const size_t sum_size, const char *const summan
 
 char *roman_subtract(char *const difference, const size_t difference_size, const char *const minuend, const char *const suptrahend) {
     if(difference != NULL) {
+        if(minuend == NULL)
+            return NULL;
+
         int a = roman_to_arabic(minuend);
         int b = roman_to_arabic(suptrahend);
 
