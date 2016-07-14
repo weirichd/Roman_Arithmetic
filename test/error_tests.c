@@ -73,7 +73,7 @@ START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_minuen
 
 START_TEST(the_caller_can_use_the_same_pointer_for_the_difference_and_the_suptrahend_without_errors) { 
     char minuend[] = "C";
-    char suptrahend[4] = { };
+    char suptrahend[5] = { };
  
     suptrahend[0] = 'I';
 
