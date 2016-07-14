@@ -88,3 +88,10 @@ START_TEST(passing_a_null_pointer_for_sum_returns_null_without_an_error) {
 
     ck_assert(roman_add(NULL, 0, summand1, summand2) == NULL);
 } END_TEST
+
+START_TEST(passing_a_null_pointer_for_difference_returns_null_without_an_error) { 
+    char minuend[] = "II";
+    char suptrahend[] = "I";
+
+    ck_assert(roman_subtract(NULL, 0, minuend, suptrahend) == NULL);
+} END_TEST
