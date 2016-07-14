@@ -51,13 +51,10 @@ You are free to use an input as an output as well:
 ```c
 char iterator[50];
 
-iterator[0] = 'I';
-
 printf("Counting in Roman Numerals:\n");
 
-for(int i = 1; i < 10; i++) {
+for(iterator[0] = 'I'; strcmp(iterator, "XI") != 0; roman_add(iterator, iterator, "I")) {
     printf("%s\n", iterator);
-    roman_add(iterator, iterator, "I");
 }
 ```
 
