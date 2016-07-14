@@ -90,8 +90,8 @@ START_TEST(passing_a_null_pointer_for_sum_returns_null_without_an_error) {
 } END_TEST
 
 START_TEST(passing_a_null_pointer_for_summand1_returns_null_without_an_error) { 
-    char summand1[] = "I";
-    char *summand2 = NULL;
+    char *summand1 = NULL;
+    char summand2[] = "I";
     char sum[2];
 
     ck_assert(roman_add(sum, ARRAY_LENGTH(sum), summand1, summand2) == NULL);

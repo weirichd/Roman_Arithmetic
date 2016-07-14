@@ -33,6 +33,9 @@ static const int LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED = 3999;
 
 char *roman_add(char *const sum, const size_t sum_size, const char *const summand1, const char *const summand2) {
     if(sum != NULL) {
+        if(summand1 == NULL)
+            return NULL;
+
         int a = roman_to_arabic(summand1);
         int b = roman_to_arabic(summand2);
 
