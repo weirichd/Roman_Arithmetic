@@ -13,15 +13,20 @@ static const RomanMapEntry ROMAN_MAP[] = {
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
+inline static int get_arabic_value(char roman_symbol) {
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        if(ROMAN_MAP[i].roman_symbol == roman_symbol)
+            return ROMAN_MAP[i].arabic_value;
+    }
+
+    return 0;
+}
+
 static int roman_to_arabic(const char *const numeral) {
     int result = 0;
 
-    for(int i = 0; i < strlen(numeral); i++) {
-        for(int j = 0; j < ROMAN_MAP_SIZE; j++) {
-            if(ROMAN_MAP[j].roman_symbol == numeral[i])
-                result += ROMAN_MAP[j].arabic_value;
-        }
-    }
+    for(int i = 0; i < strlen(numeral); i++) 
+        result += get_arabic_value(numeral[i]);
 
     return result;
 }
