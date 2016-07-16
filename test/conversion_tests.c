@@ -1,26 +1,27 @@
 START_TEST(I_converts_to_one) { 
-    char roman_nuneral[] = "I";
-
     int expected = 1;
-    int actual = roman_to_arabic(roman_nuneral);
+    int actual = roman_to_arabic("I");
 
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
 START_TEST(II_converts_to_two) { 
-    char roman_nuneral[] = "II";
-
     int expected = 2;
-    int actual = roman_to_arabic(roman_nuneral);
+    int actual = roman_to_arabic("II");
 
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
 START_TEST(V_converts_to_five) { 
-    char roman_nuneral[] = "V";
-
     int expected = 5;
-    int actual = roman_to_arabic(roman_nuneral);
+    int actual = roman_to_arabic("V");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
+START_TEST(VII_converts_to_seven) { 
+    int expected = 7;
+    int actual = roman_to_arabic("VII");
 
     ck_assert_int_eq(actual, expected);
 } END_TEST
@@ -29,12 +30,10 @@ START_TEST(V_converts_to_five) {
  * For now this test will do NOTHING
  */
 START_TEST(one_converts_to_I) {
-    int arabic_value = 1;
-    
     // char expected[] = "I";
     char actual[2] = { };
 
-    arabic_to_roman(actual, ARRAY_LENGTH(actual), arabic_value);
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 1);
 
     // ck_assert_str_eq(actual, expected);
 } END_TEST
