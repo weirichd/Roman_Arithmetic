@@ -1,13 +1,29 @@
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
+typedef struct RomanMapEntry {
+    char roman_symbol;
+    int arabic_value;
+} RomanMapEntry;
+
+static const RomanMapEntry ROMAN_MAP[] = {
+    { .roman_symbol = 'X',  .arabic_value = 10},
+    { .roman_symbol = 'V',  .arabic_value = 5},
+    { .roman_symbol = 'I',  .arabic_value = 1},
+};
+
+static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
+
 static int roman_to_arabic(const char *const numeral) {
-    if(numeral[0] == 'X')
-        return 10;
+    int result = 0;
 
-    if(numeral[0] == 'V')
-        return 5 + strlen(numeral) - 1;
+    for(int i = 0; i < strlen(numeral); i++) {
+        for(int j = 0; j < ROMAN_MAP_SIZE; j++) {
+            if(ROMAN_MAP[j].roman_symbol == numeral[i])
+                result += ROMAN_MAP[j].arabic_value;
+        }
+    }
 
-    return strlen(numeral);
+    return result;
 }
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
@@ -15,11 +31,6 @@ static void arabic_to_roman(char *const dest, const size_t dest_size, const int 
 }
 
 /**** COMMENTED OUT FOR RE-TESTING ****
-
-typedef struct RomanMapEntry {
-    char roman_symbol[3];
-    int arabic_value;
-} RomanMapEntry;
 
 static const RomanMapEntry ROMAN_MAP[] = {
     { .roman_symbol = "M",  .arabic_value = 1000},

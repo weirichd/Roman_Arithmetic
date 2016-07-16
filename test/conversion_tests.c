@@ -28,7 +28,7 @@ START_TEST(VII_converts_to_seven) {
 
 START_TEST(X_converts_to_ten) { 
     int expected = 10;
-    int actual = roman_to_arabic("XI");
+    int actual = roman_to_arabic("X");
 
     ck_assert_int_eq(actual, expected);
 } END_TEST
