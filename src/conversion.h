@@ -1,6 +1,9 @@
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
 static int roman_to_arabic(const char *const numeral) {
+    if(numeral[0] == 'X')
+        return 10;
+
     if(numeral[0] == 'V')
         return 5 + strlen(numeral) - 1;
 
