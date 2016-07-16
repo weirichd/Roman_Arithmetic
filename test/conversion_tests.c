@@ -17,7 +17,7 @@ START_TEST(II_converts_to_two) {
 } END_TEST
 
 START_TEST(V_converts_to_five) { 
-    char roman_nuneral[] = "5";
+    char roman_nuneral[] = "V";
 
     int expected = 5;
     int actual = roman_to_arabic(roman_nuneral);
