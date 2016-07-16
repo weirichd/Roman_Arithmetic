@@ -61,6 +61,34 @@ START_TEST(M_converts_to_thousand) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(MMXVI_converts_to_two_thousand_sixteen) { 
+    int expected = 2016;
+    int actual = roman_to_arabic("MMXVI");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
+START_TEST(XI_converts_to_eleven) { 
+    int expected = 11;
+    int actual = roman_to_arabic("XI");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
+START_TEST(DLV_converts_to_five_hundred_fifty_five) { 
+    int expected = 555;
+    int actual = roman_to_arabic("DLV");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
+START_TEST(CI_converts_to_one_hundred_one) { 
+    int expected = 101;
+    int actual = roman_to_arabic("CI");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
  */
