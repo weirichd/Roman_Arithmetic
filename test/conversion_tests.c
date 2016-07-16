@@ -47,6 +47,13 @@ START_TEST(C_converts_to_hundred) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(D_converts_to_hundred) { 
+    int expected = 500;
+    int actual = roman_to_arabic("D");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
  */
