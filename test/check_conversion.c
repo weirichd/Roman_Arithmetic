@@ -30,6 +30,7 @@ int main() {
     tcase_add_test(tc_roman_to_arabic, XI_converts_to_eleven);
     tcase_add_test(tc_roman_to_arabic, DLV_converts_to_five_hundred_fifty_five);
     tcase_add_test(tc_roman_to_arabic, CI_converts_to_one_hundred_one);
+    tcase_add_test(tc_roman_to_arabic, IV_converts_to_four);
 
     // For now, this test does nothing, and is not eveb added to the suite, this is only to prevent unused function errors
     tcase_add_test(tc_arabic_to_roman, one_converts_to_I);

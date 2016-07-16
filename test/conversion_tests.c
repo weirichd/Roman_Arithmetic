@@ -89,6 +89,13 @@ START_TEST(CI_converts_to_one_hundred_one) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(IV_converts_to_four) { 
+    int expected = 4;
+    int actual = roman_to_arabic("IV");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
  */
