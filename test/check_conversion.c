@@ -16,6 +16,9 @@ int main() {
     suite_add_tcase(s, tc_roman_to_arabic);
 
     tcase_add_test(tc_roman_to_arabic, I_converts_to_one);
+    tcase_add_test(tc_roman_to_arabic, II_converts_to_two);
+
+    // For now, this test does nothing, and is not eveb added to the suite, this is only to prevent unused function errors
     tcase_add_test(tc_arabic_to_roman, one_converts_to_I);
 
     srunner_run_all(sr, CK_NORMAL);

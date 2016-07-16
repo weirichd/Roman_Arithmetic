@@ -7,6 +7,15 @@ START_TEST(I_converts_to_one) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(II_converts_to_two) { 
+    char roman_nuneral[] = "II";
+
+    int expected = 2;
+    int actual = roman_to_arabic(roman_nuneral);
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
  */
