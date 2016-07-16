@@ -1,6 +1,16 @@
 #include "romarth.h"
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
+static int roman_to_arabic(const char *const numeral) {
+    return 0;
+}
+
+static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
+    return;
+}
+
+/**** COMMENTED OUT FOR RE-TESTING ****
+
 typedef struct RomanMapEntry {
     char roman_symbol[3];
     int arabic_value;
@@ -79,3 +89,5 @@ inline static void append_symbols_to_string(char *const dest, const char *const 
         strcat(dest, symbol);
     }
 }
+
+*/

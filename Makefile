@@ -15,6 +15,4 @@ tags:
 	ctags -R --exclude=Makefile
 
 run_test:
-	test/build/test_romarth
-
-test: src
+	test/build/test_conversion

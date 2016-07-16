@@ -2,8 +2,7 @@
 
 #include "../src/romarth.h"
 
-#define ARRAY_LENGTH(arr) sizeof(arr)/sizeof(arr[0])
-
+#include "array_length_macro.h"
 #include "addition_tests.c"
 #include "subtraction_tests.c"
 #include "error_tests.c"

@@ -6,33 +6,28 @@ LIBS=check
 LDFLAGS=-L../build -lromarth
 LDFLAGS+=`pkg-config --cflags --libs $(LIBS)`
 
-LIBRARY=../build/libromarth.a
-
 BUILD_DIR=build
 
-TARGET=$(BUILD_DIR)/test_romarth
+SOURCES=check_romarth.c check_conversion.c
 
-SOURCES=check_romarth.c
+TARGETS=$(addprefix $(BUILD_DIR)/, $(patsubst check_%, test_%, $(SOURCES:.c=)))
 
-TESTS=addition_tests.c error_tests.c subtraction_tests.c
-
-OBJECTS=$(addprefix $(BUILD_DIR)/, $(SOURCES:.c=.o))
-
-all: $(BUILD_DIR) $(TARGET)
-
-$(OBJECTS): $(SOURCES) $(TESTS)
+all: $(BUILD_DIR) $(TARGETS)
 
 $(BUILD_DIR):
 	mkdir $@
 
-$(TARGET): $(OBJECTS) $(LIBRARY)
+$(BUILD_DIR)/test_romarth: addition_tests.c error_tests.c subtraction_tests.c ../src/romarth.c
+$(BUILD_DIR)/test_conversion: conversion_tests.c ../src/conversion.h
+
+$(BUILD_DIR)/test_%: check_%.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-$(BUILD_DIR)/%.o: %.c 
-	$(CC) $(CFLAGS) -c -o $@ $< 
-
-.PHONY: clean 
+.PHONY: clean vars
 .SILENT: clean 
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+vars:
+	echo $(TARGETS)
