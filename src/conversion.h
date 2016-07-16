@@ -2,7 +2,7 @@
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
 static int roman_to_arabic(const char *const numeral) {
-    return 0;
+    return 1;
 }
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
