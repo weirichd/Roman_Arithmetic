@@ -2,7 +2,7 @@
 
 static int roman_to_arabic(const char *const numeral) {
     if(numeral[0] == 'V')
-        return 5;
+        return 5 + strlen(numeral) - 1;
 
     return strlen(numeral);
 }
