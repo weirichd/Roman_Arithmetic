@@ -2,7 +2,7 @@
 #define VALIDATION_H
 
 static int is_a_valid_roman_numeral(const char *const numeral) {
-    return 1;
+    return numeral[0] != 'Z';
 }
 
 #endif /* VALIDATION_H */
