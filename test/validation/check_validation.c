@@ -16,7 +16,10 @@ int main() {
     tcase_add_test(tc_validation, I_is_considered_valid);
     tcase_add_test(tc_validation, Z_is_considered_invalid);
     tcase_add_test(tc_validation, XI_is_considered_valid);
-    tcase_add_test(tc_validation, XZ_is_considered_valid);
+    tcase_add_test(tc_validation, XZ_is_considered_invalid);
+    tcase_add_test(tc_validation, Dinosaurs_is_considered_invalid);
+
+    tcase_add_test(tc_validation, MMXLVI_is_considered_valid);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
