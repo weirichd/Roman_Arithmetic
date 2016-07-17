@@ -6,7 +6,9 @@
 #include "numeral_map.h"
 
 static int symbol_b_can_follow_symbol_a(const char *const symbol_a, const char *const symbol_b) {
-    if(strcmp(symbol_a, "IX") == 0)
+    if(strcmp(symbol_a, "IV") == 0)
+        return 0;
+    else if(strcmp(symbol_a, "IX") == 0)
         return 0;
 
     return 1;
