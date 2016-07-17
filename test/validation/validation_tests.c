@@ -33,3 +33,10 @@ START_TEST(MMXLVI_is_considered_valid) {
 
     ck_assert(validation_result); 
 } END_TEST
+
+START_TEST(IXI_is_considered_invalid) {
+   int validation_result = is_a_valid_roman_numeral("IXI");
+
+    ck_assert(!validation_result); 
+} END_TEST
+
