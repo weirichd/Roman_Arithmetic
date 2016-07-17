@@ -2,39 +2,22 @@
 #define VALIDATION_H
 
 #include <string.h>
+#include <regex.h>
 
 #include "numeral_map.h"
 
-static int symbol_b_can_follow_symbol_a(const char *const symbol_a, const char *const symbol_b) {
-    if(strcmp(symbol_a, "IV") == 0)
-        return 0;
-    else if(strcmp(symbol_a, "IX") == 0)
-        return 0;
-
-    return 1;
-}
+static const char roman_numeral_patern[] = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
 
 static int is_a_valid_roman_numeral(const char *const numeral) {
-    int numeral_offset = 0;
+    regex_t regex;
 
-    const RomanMapEntry *previous_entry = NULL;
+    regcomp(&regex, roman_numeral_patern, REG_EXTENDED | REG_NOSUB); 
 
-    while(numeral[numeral_offset] != '\0') {
-        const RomanMapEntry *current_entry = find_map_element(numeral + numeral_offset);
+    int result = regexec(&regex, numeral, 0, NULL, 0);
 
-        if(current_entry == NULL)
-            return 0;
+    regfree(&regex);
 
-        if(previous_entry != NULL) {
-            if(!symbol_b_can_follow_symbol_a(previous_entry->roman_symbol, current_entry->roman_symbol))
-                return 0;
-        }
-
-        numeral_offset += strlen(current_entry->roman_symbol);
-        previous_entry = current_entry;
-    }
-
-    return 1;
+    return (result != REG_NOMATCH);
 }
 
 #endif /* VALIDATION_H */
