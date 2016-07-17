@@ -14,3 +14,11 @@ START_TEST(two_converts_to_II) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(five_converts_to_V) {
+    char expected[] = "V";
+    char actual[2] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 5);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+
