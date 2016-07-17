@@ -22,3 +22,11 @@ START_TEST(five_converts_to_V) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(twelve_converts_to_XII) {
+    char expected[] = "XII";
+    char actual[4] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 12);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+

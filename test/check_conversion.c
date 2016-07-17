@@ -43,6 +43,7 @@ int main() {
     tcase_add_test(tc_arabic_to_roman, one_converts_to_I);
     tcase_add_test(tc_arabic_to_roman, two_converts_to_II);
     tcase_add_test(tc_arabic_to_roman, five_converts_to_V);
+    tcase_add_test(tc_arabic_to_roman, twelve_converts_to_XII);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
