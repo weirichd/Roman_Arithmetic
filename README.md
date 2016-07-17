@@ -82,6 +82,8 @@ printf("Who know what this will print? - %s\n", unpredictable);
 
 You will need pkg-config installed in order to link without issues.  Run `sudo apt-get install pkg-config` from the command line if you do not have it.
 
+To make the tags file you will need to have exuberant ctags. Run `sudo apt-get install exuberant-ctags` from the command like to install.
+
 ## To Build
 
 Run `make` from the root directory.
@@ -106,3 +108,7 @@ With this in mind, I tried to refactor whenever the algorithm started to look a 
 The development ended up following three phases: Initial development to satisfy the requirements, major refactor to make the numeral conversion algorithm simpler to follow, and a redevelopemt of subtraction.
 
 Around commit #60, I commented out a majority of my tests and code in order to redo subtraction.  The reason for this was because, since subtraction and addition internally relied on the same conversion functions, once the II - I = I test was green **ALL** subtraction would work properly (except for error cases of course).  This, I felt, was a little scary since if at any time the library was swapped out (or refactored) for something else which was less tightly coupled between the addition and subtraction I still wanted the test suit to be robust.  This motivated the decision to test drive subtraction from the ground up, rather than just add a bunch of already passing tests after the fact.
+
+## Changes after initial feed back
+
+I made more changes to this project after receiving initila feedback.  It was suggested that the conversion functions be pulled out into a separate module.  However, the reviewer also commented positively on the fact that the non-arithmetic functions were static.  To satisfy both of these requirements, I pulled the static conversion functions out into a header file, which is then included by romarth.c. Once this header was pulled out, I felt that it would be appropriate to write tests for it.  To accomplish this, I proceeded similarly as with the subtraction implementation and commented out all functionality, adding failing tests and umcommenting as I went along.  I decided that the conversion tests should not be compiled with the tests for romarth, so I made a totally seperate test program for them.  The Makefiles were updated to account for this.
