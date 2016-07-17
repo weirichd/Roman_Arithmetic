@@ -30,3 +30,11 @@ START_TEST(twelve_converts_to_XII) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(sixty_six_converts_to_LXVI) {
+    char expected[] = "LXVI";
+    char actual[5] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 66);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+
