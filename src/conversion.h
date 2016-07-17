@@ -61,28 +61,6 @@ static void arabic_to_roman(char *const dest, const size_t dest_size, const int 
         int arabic_value = ROMAN_MAP[i].arabic_value;
 
         int number_of_symbols_to_append = remaining / arabic_value;
-        append_symbols_to_string(dest, roman_symbol, number_of_symbols_to_append);
-
-        remaining %= arabic_value;
-    }   
-}
-
-inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount) {
-    for(int i = 0; i < amount; i++) {
-        strcat(dest, symbol);
-    }
-}
-
-/**** COMMENTED OUT FOR RE-TESTING ****
-
-static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
-    int remaining = arabic_number;
-
-    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        const char *roman_symbol = ROMAN_MAP[i].roman_symbol;
-        int arabic_value = ROMAN_MAP[i].arabic_value;
-
-        int number_of_symbols_to_append = remaining / arabic_value;
         int string_size_needed = strlen(dest) + number_of_symbols_to_append * strlen(roman_symbol);
 
         if(string_size_needed > dest_size - 1) {
@@ -95,4 +73,8 @@ static void arabic_to_roman(char *const dest, const size_t dest_size, const int 
     }   
 }
 
-*/
+inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount) {
+    for(int i = 0; i < amount; i++) {
+        strcat(dest, symbol);
+    }
+}
