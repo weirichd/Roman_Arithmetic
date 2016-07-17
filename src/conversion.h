@@ -23,8 +23,7 @@ static const RomanMapEntry ROMAN_MAP[] = {
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
-static const char LONGEST_POSSIBLE_ROMAN_NUMERAL[] = "I";
-static const size_t LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE = sizeof(LONGEST_POSSIBLE_ROMAN_NUMERAL);
+static const size_t LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE = sizeof("MMMDCCLXXVII");
 
 inline static const RomanMapEntry *find_map_element(const char *roman_symbol);
 inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
