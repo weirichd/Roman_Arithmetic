@@ -117,6 +117,12 @@ START_TEST(MMMDXC_converts_to_three_thousand_five_hundered_ninty) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(CDIII_converts_to_four_hundered_three) { 
+    int expected = 403;
+    int actual = roman_to_arabic("CDIII");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
 
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
