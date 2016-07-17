@@ -23,6 +23,9 @@ static const RomanMapEntry ROMAN_MAP[] = {
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
+static const char LONGEST_POSSIBLE_ROMAN_NUMERAL[] = "I";
+static const size_t LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE = sizeof(LONGEST_POSSIBLE_ROMAN_NUMERAL);
+
 inline static const RomanMapEntry *find_map_element(const char *roman_symbol);
 inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
 
@@ -56,7 +59,8 @@ inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     int remaining = arabic_number;
 
-    char temp_char_buffer[100] = { };
+    char temp_char_buffer[LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE];
+    memset(temp_char_buffer, 0, LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE);
 
     for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
         const char *roman_symbol = ROMAN_MAP[i].roman_symbol;

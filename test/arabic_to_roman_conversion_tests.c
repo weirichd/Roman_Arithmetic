@@ -87,9 +87,10 @@ START_TEST(arabic_to_roman_returns_an_empty_string_when_there_isnt_enough_room_i
 } END_TEST
 
 START_TEST(the_longest_possible_roman_numeral_will_convert_properly) {
-    char *expected = LONGEST_POSSIBLE_ROMAN_NUMERAL;
-    char actual[LONGEST_POSSIBLE_ROMAN_NUMERAL_SIZE] = { };
+    char expected[] = "MMMDCCLXXVII";
+    char actual[16] = { };
 
-    arabic_to_roman(actual, ARRAY_LENGTH(actual), LONGEST_POSSIBLE_ROMAN_NUMERAL_IN_ARABIC);
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 3888);
     ck_assert_str_eq(actual, expected);
+
 } END_TEST
