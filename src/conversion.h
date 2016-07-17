@@ -5,12 +5,36 @@ static int roman_to_arabic(const char *const numeral) {
     return 0;
 }
 
+typedef struct RomanMapEntry {
+    char roman_symbol;
+    int arabic_value;
+} RomanMapEntry;
+
+static const RomanMapEntry ROMAN_MAP[] = {
+    { .roman_symbol = 'V',  .arabic_value = 5},
+    { .roman_symbol = 'I',  .arabic_value = 1},
+};
+
+static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
+
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
-    if(arabic_number == 5)
-        *dest = 'V';
-    else
-        memset(dest, 'I', arabic_number);
+    int remaining = arabic_number;
+
+    int dest_index = 0;
+
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        char roman_symbol = ROMAN_MAP[i].roman_symbol;
+        int arabic_value = ROMAN_MAP[i].arabic_value;
+
+        int number_of_symbols_to_append = remaining / arabic_value;
+
+        memset(dest + dest_index, roman_symbol, number_of_symbols_to_append);
+    
+        dest_index += number_of_symbols_to_append;
+        remaining %= arabic_value;
+    }   
 }
+
 
 /**** COMMENTED OUT FOR RE-TESTING ****
 
