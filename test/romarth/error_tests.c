@@ -150,3 +150,22 @@ START_TEST(passing_an_invalid_numeral_for_summand2_returns_an_empty_string) {
     ck_assert_str_eq(sum, "");
 } END_TEST
 
+START_TEST(passing_an_invalid_numeral_for_minuend_returns_an_empty_string) { 
+    char minuend[] = "IXI";
+    char suptrahend[] = "I";
+    char difference[16] = {};
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend); 
+
+    ck_assert_str_eq(difference, "");
+} END_TEST
+
+START_TEST(passing_an_invalid_numeral_for_suptrahend_returns_an_empty_string) { 
+    char minuend[] = "MM";
+    char suptrahend[] = "IM";
+    char difference[16] = {};
+
+    roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend); 
+
+    ck_assert_str_eq(difference, "");
+} END_TEST
