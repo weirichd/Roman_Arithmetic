@@ -3,7 +3,8 @@
 #include "../src/conversion.h"
 
 #include "array_length_macro.h"
-#include "conversion_tests.c"
+#include "roman_to_arabic_conversion_tests.c"
+#include "arabic_to_roman_conversion_tests.c"
 
 int main() {
     Suite *s = suite_create("Converison");
@@ -14,6 +15,7 @@ int main() {
     int num_fails;
 
     suite_add_tcase(s, tc_roman_to_arabic);
+    suite_add_tcase(s, tc_arabic_to_roman);
 
     tcase_add_test(tc_roman_to_arabic, I_converts_to_one);
     tcase_add_test(tc_roman_to_arabic, II_converts_to_two);
@@ -38,7 +40,6 @@ int main() {
     tcase_add_test(tc_roman_to_arabic, CDIII_converts_to_four_hundered_three);
     tcase_add_test(tc_roman_to_arabic, CM_converts_to_nine_hundered);
 
-    // For now, this test does nothing, and is not eveb added to the suite, this is only to prevent unused function errors
     tcase_add_test(tc_arabic_to_roman, one_converts_to_I);
 
     srunner_run_all(sr, CK_NORMAL);

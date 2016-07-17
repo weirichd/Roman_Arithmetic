@@ -18,7 +18,7 @@ $(BUILD_DIR):
 	mkdir $@
 
 $(BUILD_DIR)/test_romarth: addition_tests.c error_tests.c subtraction_tests.c ../src/romarth.c
-$(BUILD_DIR)/test_conversion: conversion_tests.c ../src/conversion.h
+$(BUILD_DIR)/test_conversion: roman_to_arabic_conversion_tests.c ../src/conversion.h
 
 $(BUILD_DIR)/test_%: check_%.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
