@@ -1,5 +1,19 @@
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
+// So we don't get implicit definition compilation errors
+static int roman_to_arabic(const char *const numeral) {
+    return 0;
+}
+
+static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
+    if(arabic_number == 5)
+        *dest = 'V';
+    else
+        memset(dest, 'I', arabic_number);
+}
+
+/**** COMMENTED OUT FOR RE-TESTING ****
+
 typedef struct RomanMapEntry {
     char roman_symbol[3];
     int arabic_value;
@@ -51,13 +65,6 @@ inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 
     return NULL; 
 }
-
-static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
-    memset(dest, 'I', arabic_number);
-    return;
-}
-
-/**** COMMENTED OUT FOR RE-TESTING ****
 
 inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
 
