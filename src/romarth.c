@@ -1,7 +1,8 @@
 #include "romarth.h"
 #include "conversion.h"
+#include "validation.h"
 
-#include <string.h> /* For strlen, strncat, strncmp, memset */
+#include <string.h> /* memset */
 
 static const int LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED = 3999;
 
@@ -9,13 +10,16 @@ char *roman_add(char *const sum, const size_t sum_size, const char *const summan
     if(sum == NULL || summand1 == NULL || summand2 == NULL)
         return NULL;
 
-    int a = roman_to_arabic(summand1);
-    int b = roman_to_arabic(summand2);
+    if(is_a_valid_roman_numeral(summand1)) {
+        int a = roman_to_arabic(summand1);
+        int b = roman_to_arabic(summand2);
 
-    memset(sum, 0, sum_size);
+        memset(sum, 0, sum_size);
 
-    if(a + b <= LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED) 
-        arabic_to_roman(sum, sum_size, a + b);
+        if(a + b <= LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED) 
+            arabic_to_roman(sum, sum_size, a + b);
+     } else
+        memset(sum, 0, sum_size);
 
     return sum;
 }
