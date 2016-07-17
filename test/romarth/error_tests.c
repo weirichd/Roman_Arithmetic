@@ -139,3 +139,14 @@ START_TEST(passing_an_invalid_numeral_for_summand1_returns_an_empty_string) {
 
     ck_assert_str_eq(sum, "");
 } END_TEST
+
+START_TEST(passing_an_invalid_numeral_for_summand2_returns_an_empty_string) { 
+    char summand1[] = "I";
+    char summand2[] = "VVVVVVV";
+    char sum[16] = {};
+
+    roman_add(sum, ARRAY_LENGTH(sum),  summand1, summand2); 
+
+    ck_assert_str_eq(sum, "");
+} END_TEST
+
