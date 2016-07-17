@@ -10,7 +10,7 @@ char *roman_add(char *const sum, const size_t sum_size, const char *const summan
     if(sum == NULL || summand1 == NULL || summand2 == NULL)
         return NULL;
 
-    if(is_a_valid_roman_numeral(summand1)) {
+    if(is_a_valid_roman_numeral(summand1) && is_a_valid_roman_numeral(summand2)) {
         int a = roman_to_arabic(summand1);
         int b = roman_to_arabic(summand2);
 
