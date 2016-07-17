@@ -17,6 +17,4 @@ tags:
 	ctags -R --exclude=Makefile
 
 run_tests:	
-	test/build/test_validation
-
-#	$(foreach TEST, $(TESTS), $(TEST);)
+	$(foreach TEST, $(TESTS), $(TEST);)
