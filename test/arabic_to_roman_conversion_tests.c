@@ -77,3 +77,11 @@ START_TEST(nine_hundered_ninety_nine_converts_to_CMXCIX) {
     arabic_to_roman(actual, ARRAY_LENGTH(actual), 999);
     ck_assert_str_eq(actual, expected);
 } END_TEST
+
+START_TEST(arabic_to_roman_returns_an_empty_string_when_there_isnt_enough_room_in_dest) {
+    char expected[] = "";
+    char actual[1] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 3333);
+    ck_assert_str_eq(actual, expected);
+} END_TEST

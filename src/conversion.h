@@ -1,10 +1,5 @@
 #include <string.h> /* For strlen, strncat, strncmp, memset */
 
-// So we don't get implicit definition compilation errors
-static int roman_to_arabic(const char *const numeral) {
-    return 0;
-}
-
 typedef struct RomanMapEntry {
     char roman_symbol[3];
     int arabic_value;
@@ -28,30 +23,8 @@ static const RomanMapEntry ROMAN_MAP[] = {
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
-inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
-
-static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
-    int remaining = arabic_number;
-
-    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        const char *roman_symbol = ROMAN_MAP[i].roman_symbol;
-        int arabic_value = ROMAN_MAP[i].arabic_value;
-
-        int number_of_symbols_to_append = remaining / arabic_value;
-        append_symbols_to_string(dest, roman_symbol, number_of_symbols_to_append);
-
-        remaining %= arabic_value;
-    }   
-}
-
-inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount) {
-    for(int i = 0; i < amount; i++) {
-        strcat(dest, symbol);
-    }
-}
-
-/**** COMMENTED OUT FOR RE-TESTING ****
 inline static const RomanMapEntry *find_map_element(const char *roman_symbol);
+inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
 
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
@@ -79,6 +52,28 @@ inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 
     return NULL; 
 }
+
+static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
+    int remaining = arabic_number;
+
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        const char *roman_symbol = ROMAN_MAP[i].roman_symbol;
+        int arabic_value = ROMAN_MAP[i].arabic_value;
+
+        int number_of_symbols_to_append = remaining / arabic_value;
+        append_symbols_to_string(dest, roman_symbol, number_of_symbols_to_append);
+
+        remaining %= arabic_value;
+    }   
+}
+
+inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount) {
+    for(int i = 0; i < amount; i++) {
+        strcat(dest, symbol);
+    }
+}
+
+/**** COMMENTED OUT FOR RE-TESTING ****
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     int remaining = arabic_number;
