@@ -1,7 +1,7 @@
 .SUFFIXES:
 
 BUILD_DIR=build
-SUBDIRS=romarth conversion
+SUBDIRS=romarth conversion validation
 
 .PHONY: clean $(SUBDIRS) 
 

@@ -27,12 +27,16 @@ After building, you will have the following directory tree:
     │   ├── arabic_to_roman_conversion_tests.c
     │   ├── check_conversion.c
     │   └── roman_to_arabic_conversion_tests.c
-    └── romarth
+    ├── romarth
+    │   ├── Makefile
+    │   ├── addition_tests.c
+    │   ├── check_romarth.c
+    │   ├── error_tests.c
+    │   └── subtraction_tests.c
+    └── validation
         ├── Makefile
-        ├── addition_tests.c
-        ├── check_romarth.c
-        ├── error_tests.c
-        └── subtraction_tests.c
+        ├── check_validation.c
+        └── validation_tests.c
 ```
 
 The library build/libromarth.a is the resultant target.
