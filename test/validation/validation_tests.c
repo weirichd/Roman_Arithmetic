@@ -40,3 +40,9 @@ START_TEST(IXI_is_considered_invalid) {
     ck_assert(!validation_result); 
 } END_TEST
 
+START_TEST(IVI_is_considered_invalid) {
+   int validation_result = is_a_valid_roman_numeral("IVI");
+
+    ck_assert(!validation_result); 
+} END_TEST
+
