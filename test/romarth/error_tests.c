@@ -130,3 +130,12 @@ START_TEST(passing_a_null_pointer_for_suptrahend_returns_null_without_an_error) 
     ck_assert(roman_subtract(difference, ARRAY_LENGTH(difference), minuend, suptrahend) == NULL);
 } END_TEST
 
+START_TEST(passing_an_invalid_numeral_for_summand1_returns_an_empty_string) { 
+    char summand1[] = "David";
+    char summand2[] = "I";
+    char sum[16] = {};
+
+    roman_add(sum, ARRAY_LENGTH(sum),  summand1, summand2); 
+
+    ck_assert_str_eq(sum, "");
+} END_TEST
