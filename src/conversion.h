@@ -11,6 +11,7 @@ typedef struct RomanMapEntry {
 } RomanMapEntry;
 
 static const RomanMapEntry ROMAN_MAP[] = {
+    { .roman_symbol = 'D',  .arabic_value = 500},
     { .roman_symbol = 'C',  .arabic_value = 100},
     { .roman_symbol = 'L',  .arabic_value = 50},
     { .roman_symbol = 'X',  .arabic_value = 10},
@@ -37,7 +38,6 @@ static void arabic_to_roman(char *const dest, const size_t dest_size, const int 
         remaining %= arabic_value;
     }   
 }
-
 
 /**** COMMENTED OUT FOR RE-TESTING ****
 
