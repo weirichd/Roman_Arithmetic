@@ -23,16 +23,7 @@ static const RomanMapEntry ROMAN_MAP[] = {
 
 static const size_t ROMAN_MAP_SIZE = sizeof(ROMAN_MAP)/sizeof(RomanMapEntry);
 
-inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
-    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
-        int symbol_len = strlen(ROMAN_MAP[i].roman_symbol);
-
-        if(strncmp(roman_symbol, ROMAN_MAP[i].roman_symbol, symbol_len) == 0)
-            return &ROMAN_MAP[i];
-    }
-
-    return NULL; 
-}
+inline static const RomanMapEntry *find_map_element(const char *roman_symbol);
 
 static int roman_to_arabic(const char *const numeral) {
     int arabic_result = 0;
@@ -50,15 +41,26 @@ static int roman_to_arabic(const char *const numeral) {
     return arabic_result;
 }
 
+inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
+    for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
+        int symbol_len = strlen(ROMAN_MAP[i].roman_symbol);
+
+        if(strncmp(roman_symbol, ROMAN_MAP[i].roman_symbol, symbol_len) == 0)
+            return &ROMAN_MAP[i];
+    }
+
+    return NULL; 
+}
+
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
+    *dest = 'I';
+    *(dest + 1) = '\0';
     return;
 }
 
 /**** COMMENTED OUT FOR RE-TESTING ****
 
-inline static const RomanMapEntry *find_map_element(const char *roman_symbol);
 inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount);
-
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     int remaining = arabic_number;
