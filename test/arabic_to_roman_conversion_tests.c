@@ -38,3 +38,11 @@ START_TEST(sixty_six_converts_to_LXVI) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(three_hundred_converts_to_CCC) {
+    char expected[] = "CCC";
+    char actual[4] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 300);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+
