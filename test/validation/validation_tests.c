@@ -15,3 +15,9 @@ START_TEST(XI_is_considered_valid) {
 
     ck_assert(validation_result); 
 } END_TEST
+
+START_TEST(XZ_is_considered_valid) {
+    int validation_result = is_a_valid_roman_numeral("XZ");
+
+    ck_assert(!validation_result); 
+} END_TEST
