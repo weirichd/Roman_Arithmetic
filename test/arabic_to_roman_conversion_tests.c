@@ -54,3 +54,12 @@ START_TEST(seven_hundred_thirty_two_converts_to_DCCXXXII) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(two_thousand_converts_to_MM) {
+    char expected[] = "MM";
+    char actual[3] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 2000);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+
+
