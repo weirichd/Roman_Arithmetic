@@ -5,3 +5,12 @@ START_TEST(one_converts_to_I) {
     arabic_to_roman(actual, ARRAY_LENGTH(actual), 1);
     ck_assert_str_eq(actual, expected);
 } END_TEST
+
+START_TEST(two_converts_to_II) {
+    char expected[] = "II";
+    char actual[3] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 2);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
+

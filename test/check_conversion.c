@@ -14,7 +14,7 @@ int main() {
 
     int num_fails;
 
-    suite_add_tcase(s, tc_roman_to_arabic);
+//    suite_add_tcase(s, tc_roman_to_arabic);
     suite_add_tcase(s, tc_arabic_to_roman);
 
     tcase_add_test(tc_roman_to_arabic, I_converts_to_one);
@@ -41,6 +41,7 @@ int main() {
     tcase_add_test(tc_roman_to_arabic, CM_converts_to_nine_hundered);
 
     tcase_add_test(tc_arabic_to_roman, one_converts_to_I);
+    tcase_add_test(tc_arabic_to_roman, two_converts_to_II);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
