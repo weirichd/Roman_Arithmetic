@@ -3,27 +3,31 @@
 This is my solution for the Roman Numeral Arithmetic Kata.  This kata was developed and tested under Ubuntu Linux v 14.04, which is the version I use at home :smile:
 
 After building, you will have the following directory tree:
-
 ```
 .
+├── Makefile
+├── README.md
 ├── build
 │   ├── libromarth.a
 │   └── romarth.o
-├── Makefile
-├── README.md
 ├── src
 │   ├── Makefile
+│   ├── conversion.h
 │   ├── romarth.c
 │   └── romarth.h
 ├── tags
 └── test
+    ├── Makefile
     ├── addition_tests.c
+    ├── arabic_to_roman_conversion_tests.c
+    ├── array_length_macro.h
     ├── build
-    │   ├── check_romarth.o
+    │   ├── test_conversion
     │   └── test_romarth
+    ├── check_conversion.c
     ├── check_romarth.c
     ├── error_tests.c
-    ├── Makefile
+    ├── roman_to_arabic_conversion_tests.c
     └── subtraction_tests.c
 ```
 
