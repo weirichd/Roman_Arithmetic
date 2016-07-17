@@ -14,6 +14,7 @@ int main() {
     suite_add_tcase(s, tc_validation);
 
     tcase_add_test(tc_validation, I_is_considered_valid);
+    tcase_add_test(tc_validation, Z_is_considered_invalid);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
