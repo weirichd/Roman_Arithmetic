@@ -28,13 +28,15 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
     if(difference == NULL || minuend == NULL || suptrahend == NULL)
         return NULL;
 
-    int a = roman_to_arabic(minuend);
-    int b = roman_to_arabic(suptrahend);
+    if(is_a_valid_roman_numeral(minuend) && is_a_valid_roman_numeral(suptrahend)) {
+        int a = roman_to_arabic(minuend);
+        int b = roman_to_arabic(suptrahend);
 
-    memset(difference, 0, difference_size);
+        memset(difference, 0, difference_size);
 
-    if(a > b)
-        arabic_to_roman(difference, difference_size, a - b);
-
+        if(a > b)
+            arabic_to_roman(difference, difference_size, a - b);
+     } else
+        memset(difference, 0, difference_size);
     return difference;
 }
