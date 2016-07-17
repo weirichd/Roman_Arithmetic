@@ -1,8 +1,8 @@
 #include <check.h>
 
-#include "../src/romarth.h"
+#include "../../src/romarth.h"
 
-#include "array_length_macro.h"
+#include "../array_length_macro.h"
 #include "addition_tests.c"
 #include "subtraction_tests.c"
 #include "error_tests.c"

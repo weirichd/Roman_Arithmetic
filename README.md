@@ -18,17 +18,21 @@ After building, you will have the following directory tree:
 ├── tags
 └── test
     ├── Makefile
-    ├── addition_tests.c
-    ├── arabic_to_roman_conversion_tests.c
     ├── array_length_macro.h
     ├── build
     │   ├── test_conversion
     │   └── test_romarth
-    ├── check_conversion.c
-    ├── check_romarth.c
-    ├── error_tests.c
-    ├── roman_to_arabic_conversion_tests.c
-    └── subtraction_tests.c
+    ├── conversion
+    │   ├── Makefile
+    │   ├── arabic_to_roman_conversion_tests.c
+    │   ├── check_conversion.c
+    │   └── roman_to_arabic_conversion_tests.c
+    └── romarth
+        ├── Makefile
+        ├── addition_tests.c
+        ├── check_romarth.c
+        ├── error_tests.c
+        └── subtraction_tests.c
 ```
 
 The library build/libromarth.a is the resultant target.

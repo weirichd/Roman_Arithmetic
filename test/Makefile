@@ -1,34 +1,17 @@
 .SUFFIXES:
 
-CFLAGS=-std=c99 -Wall -Werror -O3
-
-LIBS=check
-LDFLAGS=-L../build -lromarth
-LDFLAGS+=`pkg-config --cflags --libs $(LIBS)`
-
 BUILD_DIR=build
+SUBDIRS=romarth conversion
 
-SOURCES=check_romarth.c check_conversion.c
+.PHONY: clean $(SUBDIRS) 
 
-TARGETS=$(addprefix $(BUILD_DIR)/, $(patsubst check_%, test_%, $(SOURCES:.c=)))
+all: $(SUBDIRS)
 
-all: $(BUILD_DIR) $(TARGETS)
+$(SUBDIRS): $(BUILD_DIR)
+	$(MAKE) -C $@ BUILD_DIR=$(BUILD_DIR)
 
 $(BUILD_DIR):
 	mkdir $@
 
-#TODO: Make this stuff automatic 
-$(BUILD_DIR)/test_romarth: addition_tests.c error_tests.c subtraction_tests.c ../src/romarth.c
-$(BUILD_DIR)/test_conversion: arabic_to_roman_conversion_tests.c roman_to_arabic_conversion_tests.c ../src/conversion.h
-
-$(BUILD_DIR)/test_%: check_%.c
-	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
-
-.PHONY: clean vars
-.SILENT: clean 
-
 clean:
 	rm -rf $(BUILD_DIR)
-
-vars:
-	echo $(TARGETS)

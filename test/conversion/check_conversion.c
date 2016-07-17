@@ -1,8 +1,8 @@
 #include <check.h>
 
-#include "../src/conversion.h"
+#include "../../src/conversion.h"
 
-#include "array_length_macro.h"
+#include "../array_length_macro.h"
 #include "roman_to_arabic_conversion_tests.c"
 #include "arabic_to_roman_conversion_tests.c"
 
