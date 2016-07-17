@@ -69,3 +69,11 @@ START_TEST(four_hundered_forty_four_converts_to_CDXLIV) {
     arabic_to_roman(actual, ARRAY_LENGTH(actual), 444);
     ck_assert_str_eq(actual, expected);
 } END_TEST
+
+START_TEST(nine_hundered_ninety_nine_converts_to_CMXCIX) {
+    char expected[] = "CMXCIX";
+    char actual[7] = { };
+
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 999);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
