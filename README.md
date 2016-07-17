@@ -13,6 +13,7 @@ After building, you will have the following directory tree:
 ├── src
 │   ├── Makefile
 │   ├── conversion.h
+│   ├── numeral_map.h
 │   ├── romarth.c
 │   └── romarth.h
 ├── tags
@@ -46,8 +47,8 @@ The library build/libromarth.a is the resultant target.
 The header file romarth.h provides two functions:
 
 ```c
-char *roman_add(char *sum, size_t sum_size, char *summand1, char *summand2);
-char *roman_subtract(char *difference, size_t difference_size, char *minuend, char *suptrahend);
+char *roman_add(char *const sum, const size_t sum_size, const char *const summand1, const char *const summand2);
+char *roman_subtract(char *const differene, const size_t difference_size, const char *const minuend, const char *const suptrahend);
 ```
 
 These functions return their results, so you can conviently chain them if you wish:
@@ -73,17 +74,39 @@ for(iterator[0] = 'I'; strcmp(iterator, "XI") != 0; roman_add(iterator, iterator
 The Roman arithmetic functions will return empty strings under any of the following conditions:
 
 * The `sum_size` or `difference_size` is smaller than what is actually necessary to write the numeral result
-* The difference would have been non-positive (when `suptrahend >= minuend`)
-* The sum is too large to be written (when `sum > 3999`)
-
-The library will assume that the inputs are valid Roman numerals.  Dealing with this seemed outside the scope of the kata.
-
 ```c
-char unpredictable[50];
+char sum[2];
 
-roman_add(unpredictable, "Dinosaurs", "VVMIIXX");
+roman_add(sum, 2, "I", "I");
 
-printf("Who know what this will print? - %s\n", unpredictable);
+printf("If you want to know what I + I is, allocate more memory! All I can see is: %s \n", sum);
+```
+* The difference would have been non-positive (when `suptrahend >= minuend`)
+```c
+char difference[50];
+
+roman_subract(difference, 2, "V", "X");
+
+printf("Romans didn't know how to write negative numbers so I think V - X gives: %s \n", difference);
+```
+* The sum is too large to be written (when `sum > 3999`)
+```c
+char sum[50];
+
+roman_add(sum, 50, "MMM", "MMM");
+
+printf("I can't even comprehend numbers that large... %s \n", sum);
+```
+
+* Any of the input strings are not valid roman numerals:
+```c
+char sum[50];
+char difference[50];
+
+roman_add(sum, 50, "Dinosaurs", "VVMIIXX");
+roman_subtract(difference, 50, "IIIIIIIII", "VI");
+
+printf("Nothing will be printed after this: %s %s\n", sum, difference);
 ```
 
 ## Requirements
@@ -120,3 +143,7 @@ Around commit #60, I commented out a majority of my tests and code in order to r
 ## Changes after initial feed back
 
 I made more changes to this project after receiving initila feedback.  It was suggested that the conversion functions be pulled out into a separate module.  However, the reviewer also commented positively on the fact that the non-arithmetic functions were static.  To satisfy both of these requirements, I pulled the static conversion functions out into a header file, which is then included by romarth.c. Once this header was pulled out, I felt that it would be appropriate to write tests for it.  To accomplish this, I proceeded similarly as with the subtraction implementation and commented out all functionality, adding failing tests and umcommenting as I went along.  I decided that the conversion tests should not be compiled with the tests for romarth, so I made a totally seperate test program for them.  The Makefiles were updated to account for this.
+
+The reviewer commented that my library did not consider invalid roman numerals.  To account for this, I added another header file `validation.h' and test drove the development. It became clear that the simplest thing to do there would be to use regular expressions, so after implementing that I added a few more safety tests.
+
+The `roman_add` and `roman_subtract` functions became too similar at this point, so I pulled out the functionality into a static `roman_operation` function and pass in a function pointer to do the actual math.
