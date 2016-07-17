@@ -103,6 +103,14 @@ START_TEST(LIX_converts_to_fifty_nine) {
     ck_assert_int_eq(actual, expected);
 } END_TEST
 
+START_TEST(XLVII_converts_to_forty_sever) { 
+    int expected = 47;
+    int actual = roman_to_arabic("XLVII");
+
+    ck_assert_int_eq(actual, expected);
+} END_TEST
+
+
 /* This is only included to get rid of the unused error for arabic_to_roman
  * For now this test will do NOTHING
  */
