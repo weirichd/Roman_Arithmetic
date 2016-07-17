@@ -18,4 +18,5 @@ tags:
 
 run_tests:	
 	test/build/test_validation
+
 #	$(foreach TEST, $(TESTS), $(TEST);)
