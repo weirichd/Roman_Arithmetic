@@ -9,6 +9,7 @@ static const RomanMapEntry ROMAN_MAP[] = {
     { .roman_symbol = "M",  .arabic_value = 1000},
     { .roman_symbol = "D",  .arabic_value = 500},
     { .roman_symbol = "C",  .arabic_value = 100},
+    { .roman_symbol = "XC", .arabic_value = 90},
     { .roman_symbol = "L",  .arabic_value = 50},
     { .roman_symbol = "XL", .arabic_value = 40},
     { .roman_symbol = "X",  .arabic_value = 10},
