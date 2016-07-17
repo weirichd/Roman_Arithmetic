@@ -56,21 +56,22 @@ inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
     int remaining = arabic_number;
 
+    char temp_char_buffer[100] = { };
+
     for(int i = 0; i < ROMAN_MAP_SIZE; i++) {
         const char *roman_symbol = ROMAN_MAP[i].roman_symbol;
         int arabic_value = ROMAN_MAP[i].arabic_value;
 
         int number_of_symbols_to_append = remaining / arabic_value;
-        int string_size_needed = strlen(dest) + number_of_symbols_to_append * strlen(roman_symbol);
 
-        if(string_size_needed > dest_size - 1) {
-            memset(dest, 0, dest_size);
-            return;
-        }
-
-        append_symbols_to_string(dest, roman_symbol, number_of_symbols_to_append);
+        append_symbols_to_string(temp_char_buffer, roman_symbol, number_of_symbols_to_append);
         remaining %= arabic_value;
     }   
+
+    if(strlen(temp_char_buffer) <= dest_size - 1)
+        strcpy(dest, temp_char_buffer);
+    else
+        memset(dest, 0, dest_size);
 }
 
 inline static void append_symbols_to_string(char *const dest, const char *const symbol, const int amount) {
