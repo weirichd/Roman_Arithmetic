@@ -22,6 +22,11 @@ int main() {
     tcase_add_test(tc_validation, MMXLVI_is_considered_valid);
     tcase_add_test(tc_validation, IXI_is_considered_invalid);
     tcase_add_test(tc_validation, IVI_is_considered_invalid);
+    tcase_add_test(tc_validation, IM_is_considered_invalid);
+    tcase_add_test(tc_validation, VV_is_considered_invalid);
+
+    tcase_add_test(tc_validation, DD_is_considered_invalid);
+    tcase_add_test(tc_validation, IXCD_is_considered_invalid);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
