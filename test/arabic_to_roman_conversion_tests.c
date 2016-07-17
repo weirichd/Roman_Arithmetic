@@ -62,4 +62,10 @@ START_TEST(two_thousand_converts_to_MM) {
     ck_assert_str_eq(actual, expected);
 } END_TEST
 
+START_TEST(four_hundered_forty_four_converts_to_CDXLIV) {
+    char expected[] = "CDXLIV";
+    char actual[7] = { };
 
+    arabic_to_roman(actual, ARRAY_LENGTH(actual), 444);
+    ck_assert_str_eq(actual, expected);
+} END_TEST
