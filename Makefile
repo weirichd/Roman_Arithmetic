@@ -1,7 +1,9 @@
 SUBDIRS=src test
 
-.PHONY: clean $(SUBDIRS) tags run_test
+.PHONY: clean $(SUBDIRS) tags run_tests
 .SILENT: clean
+
+TESTS=$(wildcard test/build/test_*)
 
 all: $(SUBDIRS)
 
@@ -14,5 +16,5 @@ clean:
 tags: 
 	ctags -R --exclude=Makefile
 
-run_test:
-	test/build/test_conversion
+run_tests:
+	$(foreach TEST, $(TESTS), $(TEST);)

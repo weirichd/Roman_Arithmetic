@@ -14,7 +14,7 @@ int main() {
 
     int num_fails;
 
-//    suite_add_tcase(s, tc_roman_to_arabic);
+    suite_add_tcase(s, tc_roman_to_arabic);
     suite_add_tcase(s, tc_arabic_to_roman);
 
     tcase_add_test(tc_roman_to_arabic, I_converts_to_one);
