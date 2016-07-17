@@ -1,4 +1,4 @@
-#include <string.h> /* For strlen, strncat, strncmp, memset */
+#include <string.h> /* For strlen, strncat, strncmp, strcpy, memset */
 
 typedef struct RomanMapEntry {
     char roman_symbol[3];
@@ -37,7 +37,6 @@ static int roman_to_arabic(const char *const numeral) {
         const RomanMapEntry *current_entry = find_map_element(numeral + numeral_offset);
 
         arabic_result += current_entry->arabic_value;
-
         numeral_offset += strlen(current_entry->roman_symbol);
     }
 
