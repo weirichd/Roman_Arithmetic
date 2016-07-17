@@ -47,6 +47,7 @@ int main() {
     tcase_add_test(tc_arabic_to_roman, sixty_six_converts_to_LXVI);
 
     tcase_add_test(tc_arabic_to_roman, three_hundred_converts_to_CCC);
+    tcase_add_test(tc_arabic_to_roman, seven_hundred_thirty_two_converts_to_DCCXXXII);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
