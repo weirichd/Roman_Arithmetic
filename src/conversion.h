@@ -11,6 +11,7 @@ typedef struct RomanMapEntry {
 } RomanMapEntry;
 
 static const RomanMapEntry ROMAN_MAP[] = {
+    { .roman_symbol = 'X',  .arabic_value = 10},
     { .roman_symbol = 'V',  .arabic_value = 5},
     { .roman_symbol = 'I',  .arabic_value = 1},
 };
