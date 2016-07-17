@@ -53,6 +53,7 @@ int main() {
     tcase_add_test(tc_arabic_to_roman, nine_hundered_ninety_nine_converts_to_CMXCIX);
 
     tcase_add_test(tc_arabic_to_roman, arabic_to_roman_returns_an_empty_string_when_there_isnt_enough_room_in_dest);
+    tcase_add_test(tc_arabic_to_roman, the_longest_possible_roman_numeral_will_convert_properly);
 
     srunner_run_all(sr, CK_NORMAL);
     num_fails = srunner_ntests_failed(sr);
