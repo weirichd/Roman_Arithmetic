@@ -53,8 +53,7 @@ inline static const RomanMapEntry *find_map_element(const char *roman_symbol) {
 }
 
 static void arabic_to_roman(char *const dest, const size_t dest_size, const int arabic_number) {
-    *dest = 'I';
-    *(dest + 1) = '\0';
+    memset(dest, 'I', arabic_number);
     return;
 }
 
