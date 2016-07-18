@@ -26,7 +26,7 @@ char *roman_subtract(char *const difference, const size_t difference_size, const
 
 static const int LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED = 3999;
 
-inline int is_within_valid_range(int number) {
+inline static int is_within_valid_range(int number) {
     return 0 < number && number < LARGEST_NUMERAL_THAT_CAN_BE_EXPRESSED;
 }
 
